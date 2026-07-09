@@ -1,72 +1,513 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./assets/images/logo/logo-t.png">
     <link rel="stylesheet" href="./assets/css/styles.css">
-    <title>AmberScript</title>
+    
+    <!-- SEO Optimization -->
+    <title>AmberScript | Secure Transcription, Subtitles & Student Investments</title>
+    <meta name="description" content="Europe's trusted partner for secure transcription, automated subtitles, and student-focused investments. GDPR compliant, ISO certified, & TPN certified.">
+    
+    <!-- Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
-
 <body>
-<header>
-    <div class="logo">
-        <img src="./assets/images/logo/logo-t.png" alt="AmberScript logo" width="100%" height="100%">
-    </div>
-    <nav>
-        <button>Media</button>
-        <div class="dropdown">
-            <button class="dropdownbtn">Products</button>
-            <div class="dropdown-content">
-                <a href="#" class="subtitles">Subtitles</a>
-                <div class="inner-dropdown">
-                    <a href="#">Transcription</a>
-                    <div class="inner-dropdown-content">
-                        <a href="#">
-                            <h4>Machine-Made Transcription</h4>
-                            <p>90% Accurate. Audio and video to text in minutes.</p>
-                        </a>
-                        <a href="#">
-                            <h4>Human-Made Transcription</h4>
-                            <p>90% Accurate. By native speaking language expert.</p>
-                        </a>
+
+    <!-- --- NAVIGATION HEADER --- -->
+    <header id="main-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="#">
+                    <img src="./assets/images/logo/logo-t.png" alt="AmberScript Logo">
+                </a>
+            </div>
+            
+            <nav>
+                <a href="#services" class="nav-link">Media</a>
+                
+                <!-- Products Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-btn">
+                        Products
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-col">
+                            <div class="dropdown-header">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M3 20h3M12 4v16M3 16h6M3 12h6M3 8h6"/></svg>
+                                Transcription
+                            </div>
+                            <a href="#" class="dropdown-item">
+                                <h4>Machine-Made Transcription</h4>
+                                <p>90% Accurate. Audio and video to text in minutes.</p>
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <h4>Human-Made Transcription</h4>
+                                <p>99%+ Accurate. By native language experts.</p>
+                            </a>
+                        </div>
+                        
+                        <div class="dropdown-col">
+                            <div class="dropdown-header">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                Trading & Investment <span class="badge-new">New</span>
+                            </div>
+                            <a href="#calculator" class="dropdown-item">
+                                <h4>Trading Services</h4>
+                                <p>Algorithmic & manual trade setups optimized for savings.</p>
+                            </a>
+                            <a href="#calculator" class="dropdown-item">
+                                <h4>Amber Investment</h4>
+                                <p>High-yield automated student investment portal.</p>
+                            </a>
+                        </div>
                     </div>
                 </div>
+
+                <a href="#calculator" class="nav-link">Investments</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
                 
-                <div class="inner-dropdown last-child">
-                    <a href="#">Trading & Investment</a>
-                    <div class="inner-dropdown-content">
-                        <a href="#">
-                            <p>Trading</p>
-                        </a>
-                        <a href="#">
-                            <p>Amber Investment</p>
-                        </a>
+                <div class="mobile-only-ctas" style="display: none; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem; border-top: 1px solid var(--color-border-light); padding-top: 1.5rem;">
+                    <a href="#" class="btn btn-outline" style="width: 100%;">Login</a>
+                    <a href="#services" class="btn btn-primary" style="width: 100%;">Start for Free</a>
+                </div>
+            </nav>
+
+            <div class="header-cta">
+                <a href="#" class="btn btn-text">Pricing</a>
+                <a href="#" class="btn btn-outline">Login</a>
+                <a href="#services" class="btn btn-primary">Start for Free</a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle Navigation">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- --- HERO SECTION --- -->
+    <main>
+        <section class="hero-section">
+            <div class="container hero-layout">
+                <div class="hero-content">
+                    <span class="hero-tag">Secure & Accurate Solutions</span>
+                    <h1 class="hero-title">
+                        Students trusted partner for <span class="text-gradient">secure, high-quality</span> Transcription & <span class="text-serif-italic">Investments</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Our speech-to-text software, paired with top-tier language professionals and AmberScript Investment, collaboratively delivers highly accurate solutions tailored to student and business needs.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#services" class="btn btn-primary">Get Transcription Now</a>
+                        <a href="#calculator" class="btn btn-investment">Try Amber Investment</a>
                     </div>
                 </div>
-                
+
+                <div class="hero-graphic">
+                    <div class="hero-card-decorative">
+                        <div class="hero-card-header">
+                            <div class="hero-card-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1M12 19v4M8 23h8"/></svg>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 0.95rem; color: var(--color-primary)">Secure Audio Upload</h4>
+                                <p style="font-size: 0.75rem; color: var(--color-text-secondary)">Processing in minutes...</p>
+                            </div>
+                        </div>
+                        <p style="font-size: 0.85rem; color: var(--color-text-primary); margin-bottom: 0.5rem; font-weight: 500;">Speech-to-Text Progress</p>
+                        <div class="hero-card-waves">
+                            <div class="hero-card-wave-bar"></div>
+                            <div class="hero-card-wave-bar"></div>
+                            <div class="hero-card-wave-bar"></div>
+                            <div class="hero-card-wave-bar"></div>
+                            <div class="hero-card-wave-bar"></div>
+                        </div>
+                        <div style="background-color: var(--color-bg-secondary); border-radius: 6px; padding: 0.5rem; font-size: 0.75rem; color: var(--color-primary); font-family: monospace; text-align: center; border: 1px solid var(--color-border-light)">
+                            Accuracy: 99.4% (Verified by expert)
+                        </div>
+                    </div>
+                    <div class="hero-circle-accent"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- PARTNERS MARQUEE --- -->
+        <section class="partners-section">
+            <h3 class="partners-title">Trusted by leading universities & brands worldwide</h3>
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <img src="./assets/images/trusted-partners.png" alt="Trusted Partner Logo" class="partner-logo">
+                    <!-- Duplicate for infinite looping effect -->
+                    <img src="./assets/images/trusted-partners.png" alt="Trusted Partner Logo" class="partner-logo">
+                </div>
+            </div>
+        </section>
+
+        <!-- --- TRUST & COMPLIANCE --- -->
+        <section class="trust-section">
+            <div class="container">
+                <div class="trust-card">
+                    <div class="trust-text">
+                        <h2>Leading the market in secure data & transcription</h2>
+                        <p>We prioritize your privacy. Our platform is GDPR compliant, ISO 27001 & 9001 certified, and proudly implements enterprise-grade encryption to protect files and investment portfolios.</p>
+                        <a href="#" class="btn btn-accent">View Certificates & Security Policies</a>
+                    </div>
+                    <div class="trust-badges">
+                        <div class="badge-card">
+                            <img src="./assets/images/iso-logo.svg" alt="ISO Certification">
+                            <div class="badge-label">ISO 27001 & 9001</div>
+                        </div>
+                        <div class="badge-card">
+                            <img src="./assets/images/gdpr.svg" alt="GDPR Compliant">
+                            <div class="badge-label">GDPR Compliant</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- SERVICES SECTION --- -->
+        <section id="services" class="services-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="hero-tag" style="background-color: var(--color-accent-light); color: var(--color-accent);">Core Services</span>
+                    <h2 class="section-title">Flexible solutions for modern student and business workflows</h2>
+                </div>
+
+                <div class="services-grid">
+                    <!-- Service 1: Transcription -->
+                    <div class="service-card">
+                        <div class="service-icon-wrap">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        </div>
+                        <h3>Transcription</h3>
+                        <p>Convert audio or video files to text in minutes. Perfect for lectures, research interviews, and focus groups.</p>
+                        <ul class="benefit-list">
+                            <li class="benefit-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                <strong>Automatic or Human-made:</strong> Pick 90% or 99%+ accuracy.
+                            </li>
+                            <li class="benefit-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                <strong>In-built Editor:</strong> Align timecodes and edit speakers smoothly.
+                            </li>
+                            <li class="benefit-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                <strong>Export anywhere:</strong> DOCX, TXT, JSON, and PDF formats.
+                            </li>
+                        </ul>
+                        <a href="#" class="btn btn-outline">Explore Transcription</a>
+                    </div>
+
+                    <!-- Service 2: Subtitles -->
+                    <div class="service-card">
+                        <div class="service-icon-wrap">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        </div>
+                        <h3>Subtitles</h3>
+                        <p>Make your video content fully accessible to global audiences with perfectly synchronized subtitles and translation overlay.</p>
+                        <ul class="benefit-list">
+                            <li class="benefit-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                <strong>Auto Subtitles:</strong> Fast speech-to-text captioning in 39+ languages.
+                            </li>
+                            <li class="benefit-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                <strong>Human Polish:</strong> Verified formatting for readability & accessibility compliance.
+                            </li>
+                            <li class="benefit-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                <strong>Multiple Formats:</strong> Export SRT, VTT, EBU-STL, and burnt-in open captions.
+                            </li>
+                        </ul>
+                        <a href="#" class="btn btn-outline">Explore Subtitles</a>
+                    </div>
+
+                    <!-- Service 3: Investments -->
+                    <div class="service-card investment-card">
+                        <div class="service-icon-wrap">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                        </div>
+                        <h3>Amber Investment</h3>
+                        <p>Grow your savings passively. Connect your project earnings directly to automated, low-risk portfolio plans designed for students.</p>
+                        <ul class="benefit-list">
+                            <li class="benefit-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                <strong>Auto-Invest:</strong> Instantly convert transcription income to investment funds.
+                            </li>
+                            <li class="benefit-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                <strong>High Yield & Secure:</strong> Automated portfolios yielding up to 12.4% annually.
+                            </li>
+                            <li class="benefit-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                <strong>Zero Lock-in:</strong> Withdraw or deposit funds anytime with no penalty fees.
+                            </li>
+                        </ul>
+                        <a href="#calculator" class="btn btn-investment">Calculate Returns</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- DYNAMIC INVESTMENT PREVIEW WIDGET --- -->
+        <section id="calculator" class="widget-section">
+            <div class="container widget-layout">
+                <div class="widget-text">
+                    <span class="hero-tag" style="background-color: var(--color-investment-light); color: var(--color-investment);">Grow Your Savings</span>
+                    <h2>Passive Wealth-Building, Simplified for Students</h2>
+                    <p>Why let your earnings sit idle? Integrate transcription proceeds into our automated micro-investment engine. Watch your savings compound over time with smart, algorithmic asset selection.</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-box">
+                            <h4>Compounding Power</h4>
+                            <p>Daily compounding interest cycles ensure your money works round-the-clock.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>Regulated Protection</h4>
+                            <p>Funds stored in SEC-protected custodian accounts with bank-grade encryption.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>Micro-Trading</h4>
+                            <p>Fractional stock and token shares permit starting with as low as $5 initial capital.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>Student Perks</h4>
+                            <p>Free trading tiers and absolute fee waivers on accounts under $5,000 balance.</p>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-investment">Create Investment Account</a>
+                </div>
+
+                <!-- Calculator Widget Card -->
+                <div class="calculator-card">
+                    <div class="calc-header">
+                        <h3>Investment Calculator</h3>
+                        <p>Simulate portfolio compounding projections</p>
+                    </div>
+
+                    <div class="calc-inputs">
+                        <div class="input-group">
+                            <label class="input-label" for="initial-capital">
+                                Initial Investment: 
+                                <span class="input-val" id="initial-val">$1,000</span>
+                            </label>
+                            <input type="range" class="range-slider" id="initial-capital" min="100" max="10000" step="100" value="1000">
+                        </div>
+
+                        <div class="input-group">
+                            <label class="input-label" for="monthly-deposit">
+                                Monthly Recurring Savings: 
+                                <span class="input-val" id="monthly-val">$150</span>
+                            </label>
+                            <input type="range" class="range-slider" id="monthly-deposit" min="0" max="1000" step="10" value="150">
+                        </div>
+
+                        <div class="input-group">
+                            <label class="input-label" for="duration-years">
+                                Growth Period:
+                                <span class="input-val" id="duration-val">3 Years</span>
+                            </label>
+                            <input type="range" class="range-slider" id="duration-years" min="1" max="10" step="1" value="3">
+                        </div>
+                    </div>
+
+                    <div class="calc-outputs">
+                        <div class="output-box">
+                            <span class="output-label">Total Outlay</span>
+                            <span class="output-value" id="output-outlay">$6,400</span>
+                        </div>
+                        <div class="output-box accented">
+                            <span class="output-label">Projected Yield</span>
+                            <span class="output-value" id="output-yield">$7,935</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- TESTIMONIALS --- -->
+        <section id="testimonials" class="testimonials-section">
+            <div class="container testimonials-grid">
+                <div class="testimonials-heading">
+                    <span class="hero-tag">Student Feedback</span>
+                    <h2>Trusted by 10,000+ students & researchers</h2>
+                    <p>Read real stories from students who accelerate their transcripts and save for their post-grad plans simultaneously using AmberScript.</p>
+                    <div class="rating-badge">
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-text">4.8 / 5 Rating on Trustpilot</span>
+                    </div>
+                </div>
+
+                <div class="testimonials-slider">
+                    <img src="./assets/images/quote.svg" alt="Quote" class="quote-icon">
+                    <p class="testimonial-text">
+                        "Transcribing my master's thesis interviews used to take weeks. AmberScript did it in minutes with amazing accuracy. I linked my transcript payout to the Amber Investment account and earned $200 over the semester without even thinking!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Sarah Jenkins</h4>
+                            <p>MSc Candidate, Utrecht University</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- --- FOOTER --- -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="./assets/images/logo/logo-t.png" alt="AmberScript Logo">
+                </div>
+                <p class="footer-desc">
+                    Pairing state-of-the-art speech recognition with native expert networks and smart automated investment frameworks.
+                </p>
+                <div class="footer-socials">
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Twitter">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="LinkedIn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Speech-to-Text</a></li>
+                    <li><a href="#">Subtitles Generator</a></li>
+                    <li><a href="#">Human Polish</a></li>
+                    <li><a href="#">Translated Subtitles</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Investments</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Amber Savings Plan</a></li>
+                    <li><a href="#">Algorithmic Portfolios</a></li>
+                    <li><a href="#">Safety & Security</a></li>
+                    <li><a href="#">Student Waivers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Security & GDPR</a></li>
+                    <li><a href="#">Affiliate Partner</a></li>
+                    <li><a href="#">Support Center</a></li>
+                </ul>
             </div>
         </div>
-    </nav>
-    <div class="cta">
-        <button>Pricing</button>
-        <button>Login</button>
-    </div>
-</header>
-<main>
-    <div class="hero">
-        <div class="banner">
-            <h2>Students Trusted partner for <span>secure, high-quality </span> Transcription, Subtitles and <span>Investments</span></h2>
-        </div>
-        <div class="banner-small">
-            <p>Our speech-to-text software, paired with top-tier language professionals, and AmberScript Investment collaboratively delivers highly accurate solutions tailored to students and business needs.</p>
-        </div>
-        <div class="hero-cta">
-            <button>Get Transcription Now</button>
-            <button>Try AmberScript Investment</button>
-        </div>
-    </div>
-</main>
-</body>
 
+        <div class="container footer-bottom">
+            <p>&copy; 2026 AmberScript Global B.V. All rights reserved. Registered ISO 27001 custodian.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Cookie settings</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- --- JAVASCRIPT LOGIC --- -->
+    <script>
+        // --- Sticky Header Effect ---
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // --- Mobile Menu Toggle ---
+        const mobileToggle = document.getElementById('mobile-menu-btn');
+        const navMenu = document.querySelector('nav');
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // --- Investment Compounding Calculator ---
+        const initialSlider = document.getElementById('initial-capital');
+        const monthlySlider = document.getElementById('monthly-deposit');
+        const durationSlider = document.getElementById('duration-years');
+
+        const initialVal = document.getElementById('initial-val');
+        const monthlyVal = document.getElementById('monthly-val');
+        const durationVal = document.getElementById('duration-val');
+
+        const outputOutlay = document.getElementById('output-outlay');
+        const outputYield = document.getElementById('output-yield');
+
+        const ANNUAL_INTEREST_RATE = 0.124; // 12.4% Annual Yield
+
+        function calculateProjections() {
+            const initial = parseFloat(initialSlider.value);
+            const monthly = parseFloat(monthlySlider.value);
+            const years = parseInt(durationSlider.value);
+            
+            // Output labels
+            initialVal.innerText = `$${initial.toLocaleString()}`;
+            monthlyVal.innerText = `$${monthly.toLocaleString()}`;
+            durationVal.innerText = `${years} Year${years > 1 ? 's' : ''}`;
+
+            // Calculation
+            const totalOutlay = initial + (monthly * 12 * years);
+            
+            // Compound Formula: FV = P*(1+r)^t + PMT * [((1+r/12)^(12*t) - 1)/(r/12)]
+            const r = ANNUAL_INTEREST_RATE;
+            const t = years;
+            const n = 12; // monthly compounding
+            
+            const compoundInterestPrincipal = initial * Math.pow(1 + r/n, n * t);
+            
+            let compoundInterestAnnuity = 0;
+            if (monthly > 0) {
+                compoundInterestAnnuity = monthly * ((Math.pow(1 + r/n, n * t) - 1) / (r/n));
+            }
+            
+            const projectedYield = Math.round(compoundInterestPrincipal + compoundInterestAnnuity);
+
+            // Display Results
+            outputOutlay.innerText = `$${totalOutlay.toLocaleString()}`;
+            outputYield.innerText = `$${projectedYield.toLocaleString()}`;
+        }
+
+        // Add event listeners
+        initialSlider.addEventListener('input', calculateProjections);
+        monthlySlider.addEventListener('input', calculateProjections);
+        durationSlider.addEventListener('input', calculateProjections);
+
+        // Run on initial load
+        calculateProjections();
+    </script>
+</body>
 </html>
