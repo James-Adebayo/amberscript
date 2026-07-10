@@ -454,7 +454,7 @@ nav {
     width: 4px;
     background-color: var(--color-accent);
     border-radius: 2px;
-    animation: bounce wave 1.2s infinite ease-in-out;
+    animation: bounce 1.2s infinite ease-in-out;
 }
 
 @keyframes bounce {
@@ -592,8 +592,7 @@ nav {
 }
 
 .badge-card img {
-    height: 60px;
-    width: auto;
+    width: 100%;
     object-fit: contain;
 }
 
@@ -641,6 +640,7 @@ nav {
     position: relative;
     overflow: hidden;
 }
+
 
 .service-card:hover {
     transform: translateY(-8px);
@@ -1150,10 +1150,12 @@ footer {
         gap: 1.25rem;
         box-shadow: var(--shadow-lg);
         z-index: 1000;
+        height: 80vh !important;
     }
     
     .mobile-only-ctas {
         display: flex !important;
+        width: 100%;
     }
     
     .header-cta {
