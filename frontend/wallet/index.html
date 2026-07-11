@@ -3,9 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Wallet</title>
 </head>
 <body>
-    
+    <!-- Side bar -->
+    <aside>
+        <div class="aside-container">
+            <div class="logo" onclick="window.location.href = '/'" style="cursor: pointer;"><img src="/frontend/assets/images/logo/logo-t.png" alt="AmberScript logo"></div>
+            <nav>
+                <a href="#" class="nav-link active">Dashboard</a>
+                <a href="#" class="nav-link">Transactions</a>
+                <a href="#" class="nav-link">Investments</a>
+                <a href="#" class="nav-link">Inbox</a>
+                <a href="#" class="nav-link">Settings</a>
+            </nav>
+            <a href="#" class="footer">
+                <h4>Akinpelu Akinoluwa</h4>
+                <p>Akinpeluakin@gmail.com</p>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <main>
+        <section class="page-title"><h2>Dashboard</h2></section>
+        <section class="account-user">
+            <div class="greetings">Welcome Back, <span class="username">Akinpelu</span></div>
+        </section>
+        <section class="account-detail">
+            <div class="account-header">
+                <p class="total-balance-sign">Total Balance</p>
+                <div class="account-balance">
+                    <p class="balance"><span class="currency">₦</span><span class="balance-value">300,424.00</span></p>
+                    <div class="balance-action">
+                        <button class="account-action-button">Deposit</button>
+                        <button class="account-action-button">Payment</button>
+                        <button class="account-action-button">Withdraw</button>
+                        <button class="account-action-button">Freeze</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
