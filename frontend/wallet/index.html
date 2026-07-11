@@ -1,50 +1,907 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../assets/images/logo/logo-t.png">
     <link rel="stylesheet" href="style.css">
-    <title>Wallet</title>
-</head>
-<body>
-    <!-- Side bar -->
-    <aside>
-        <div class="aside-container">
-            <div class="logo" onclick="window.location.href = '/'" style="cursor: pointer;"><img src="/frontend/assets/images/logo/logo-t.png" alt="AmberScript logo"></div>
-            <nav>
-                <a href="#" class="nav-link active">Dashboard</a>
-                <a href="#" class="nav-link">Transactions</a>
-                <a href="#" class="nav-link">Investments</a>
-                <a href="#" class="nav-link">Inbox</a>
-                <a href="#" class="nav-link">Settings</a>
-            </nav>
-            <a href="#" class="footer">
-                <h4>Akinpelu Akinoluwa</h4>
-                <p>Akinpeluakin@gmail.com</p>
-            </a>
-        </div>
-    </aside>
 
-    <!-- Main -->
-    <main>
-        <section class="page-title"><h2>Dashboard</h2></section>
-        <section class="account-user">
-            <div class="greetings">Welcome Back, <span class="username">Akinpelu</span></div>
-        </section>
-        <section class="account-detail">
-            <div class="account-header">
-                <p class="total-balance-sign">Total Balance</p>
-                <div class="account-balance">
-                    <p class="balance"><span class="currency">₦</span><span class="balance-value">300,424.00</span></p>
-                    <div class="balance-action">
-                        <button class="account-action-button">Deposit</button>
-                        <button class="account-action-button">Payment</button>
-                        <button class="account-action-button">Withdraw</button>
-                        <button class="account-action-button">Freeze</button>
+    <!-- SEO Optimization -->
+    <title>Dashboard | AmberScript Wallet</title>
+    <meta name="description"
+        content="Manage your transcription earnings, configure automated student micro-investments, deposit, transfer, and freeze your virtual card.">
+</head>
+
+<body>
+    <div class="app-layout">
+        <!-- --- SIDEBAR --- -->
+        <aside class="sidebar">
+            <div class="sidebar-wrapper">
+                <div class="sidebar-header" onclick="window.location.href = '/'" style="cursor: pointer;">
+                    <img src="../assets/images/logo/logo-t.png" alt="AmberScript Logo" class="brand-logo">
+                </div>
+
+                <nav class="sidebar-nav">
+                    <a href="#" class="nav-item active" id="nav-dashboard">
+                        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="9" rx="1" />
+                            <rect x="14" y="3" width="7" height="5" rx="1" />
+                            <rect x="14" y="12" width="7" height="9" rx="1" />
+                            <rect x="3" y="16" width="7" height="5" rx="1" />
+                        </svg>
+                        Dashboard
+                    </a>
+                    <a href="../tasks/" class="nav-item">
+                        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                        </svg>
+                        Available Tasks
+                    </a>
+                    <a href="#" class="nav-item" id="nav-transactions">
+                        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                            <path d="M12 6v6l4 2" />
+                        </svg>
+                        Ledger
+                    </a>
+                    <a href="#" class="nav-item" id="nav-investments">
+                        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="20" x2="18" y2="10" />
+                            <line x1="12" y1="20" x2="12" y2="4" />
+                            <line x1="6" y1="20" x2="6" y2="14" />
+                        </svg>
+                        Investments
+                    </a>
+                    <a href="#" class="nav-item">
+                        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg>
+                        Inbox
+                        <span class="nav-badge">2</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3" />
+                            <path
+                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                        </svg>
+                        Settings
+                    </a>
+                </nav>
+
+                <div class="sidebar-profile">
+                    <div class="profile-avatar">AA</div>
+                    <div class="profile-details">
+                        <h4 class="profile-name">Akinpelu Akinoluwa</h4>
+                        <p class="profile-email">Akinpeluakin@gmail.com</p>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </aside>
+
+        <!-- --- MAIN CONTENT --- -->
+        <main class="main-content">
+            <div class="dashboard-grid">
+                <!-- Top welcome header row spanning both columns -->
+                <header class="dashboard-header">
+                    <div class="header-welcome">
+                        <p class="date-today" id="current-date">July 11, 2026</p>
+                        <h2 class="welcome-text">Welcome back, <span class="accent-username">Akinpelu</span> 👋</h2>
+                    </div>
+                    <div class="header-notification">
+                        <div class="notification-bell">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" />
+                            </svg>
+                            <span class="bell-dot"></span>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- LEFT MAIN COLUMN: Grid stats and Charts -->
+                <div class="left-column">
+                    <!-- Cards Grid -->
+                    <div class="stats-cards-grid">
+                        <!-- Virtual Debit Card -->
+                        <div class="virtual-card-wrapper">
+                            <div class="virtual-card" id="debit-card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <div class="card-header">
+                                            <span class="card-type">Amber Virtual Card</span>
+                                            <div class="card-chip-icon">
+                                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                                    stroke="#e0e0e0" stroke-width="1.5">
+                                                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                                                    <line x1="3" y1="10" x2="21" y2="10" />
+                                                    <line x1="3" y1="14" x2="21" y2="14" />
+                                                    <line x1="9" y1="5" x2="9" y2="19" />
+                                                    <line x1="15" y1="5" x2="15" y2="19" />
+                                                </svg>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-mid">
+                                            <p class="card-balance-lbl">Available Balance</p>
+                                            <p class="card-balance-val">₦300,424.00</p>
+                                        </div>
+
+                                        <div class="card-footer">
+                                            <div class="card-holder-info">
+                                                <span class="lbl-small">Card Holder</span>
+                                                <span class="val-card">AKINPELU AKINOLUWA</span>
+                                            </div>
+                                            <div class="card-expiry-info">
+                                                <span class="lbl-small">Expiry</span>
+                                                <span class="val-card">08/29</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Frozen Overlay -->
+                                <div class="card-frozen-overlay" id="card-frozen-overlay">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                                    </svg>
+                                    <span>Card Frozen</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Info Cards (Total Earnings & Investments) -->
+                        <div class="info-cards-stack">
+                            <div class="stats-card glass-card">
+                                <div class="card-icon-wrapper revenue">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                                    </svg>
+                                </div>
+                                <div class="stats-data">
+                                    <span class="stats-label">Total Task Revenue</span>
+                                    <h3 class="stats-number">₦450,250.00</h3>
+                                    <p class="stats-trend positive">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="3">
+                                            <polyline points="18 15 12 9 6 15" />
+                                        </svg>
+                                        <span>+15.4% this month</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="stats-card glass-card">
+                                <div class="card-icon-wrapper yield">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <line x1="18" y1="20" x2="18" y2="10" />
+                                        <line x1="12" y1="20" x2="12" y2="4" />
+                                        <line x1="6" y1="20" x2="6" y2="14" />
+                                    </svg>
+                                </div>
+                                <div class="stats-data">
+                                    <span class="stats-label">Amber Investment Yield</span>
+                                    <h3 class="stats-number">₦102,400.00</h3>
+                                    <p class="stats-trend positive">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="3">
+                                            <polyline points="18 15 12 9 6 15" />
+                                        </svg>
+                                        <span>12.4% APY Compounding</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Chart Widget -->
+                    <div class="glass-card chart-widget">
+                        <div class="widget-header">
+                            <div>
+                                <h3 class="widget-title">Task Earnings & Investment Growth</h3>
+                                <p class="widget-subtitle">Visualizing income compounding over the last 6 months</p>
+                            </div>
+                            <div class="chart-legend">
+                                <span class="legend-item"><span class="legend-dot income"></span>Earnings</span>
+                                <span class="legend-item"><span class="legend-dot invest"></span>Invested</span>
+                            </div>
+                        </div>
+
+                        <div class="chart-container">
+                            <svg class="earnings-chart" id="svg-chart" viewBox="0 0 600 200" preserveAspectRatio="none">
+                                <defs>
+                                    <linearGradient id="gradient-income" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="var(--color-accent)" stop-opacity="0.3" />
+                                        <stop offset="100%" stop-color="var(--color-accent)" stop-opacity="0" />
+                                    </linearGradient>
+                                    <linearGradient id="gradient-invest" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="var(--color-investment)" stop-opacity="0.3" />
+                                        <stop offset="100%" stop-color="var(--color-investment)" stop-opacity="0" />
+                                    </linearGradient>
+                                </defs>
+                                <!-- Grid Lines -->
+                                <line x1="0" y1="40" x2="600" y2="40" class="chart-grid-line" />
+                                <line x1="0" y1="80" x2="600" y2="80" class="chart-grid-line" />
+                                <line x1="0" y1="120" x2="600" y2="120" class="chart-grid-line" />
+                                <line x1="0" y1="160" x2="600" y2="160" class="chart-grid-line" />
+
+                                <!-- Area Paths -->
+                                <path
+                                    d="M 0 200 L 0 150 L 100 130 L 200 145 L 300 90 L 400 80 L 500 50 L 600 30 L 600 200 Z"
+                                    fill="url(#gradient-income)" />
+                                <path
+                                    d="M 0 200 L 0 180 L 100 170 L 200 155 L 300 130 L 400 120 L 500 90 L 600 70 L 600 200 Z"
+                                    fill="url(#gradient-invest)" />
+
+                                <!-- Line Paths -->
+                                <path d="M 0 150 L 100 130 L 200 145 L 300 90 L 400 80 L 500 50 L 600 30" fill="none"
+                                    stroke="var(--color-accent)" stroke-width="3" class="chart-line" />
+                                <path d="M 0 180 L 100 170 L 200 155 L 300 130 L 400 120 L 500 90 L 600 70" fill="none"
+                                    stroke="var(--color-investment)" stroke-width="3" class="chart-line" />
+
+                                <!-- Interactive Dots -->
+                                <circle cx="0" cy="150" r="5" class="chart-dot income" data-val="₦35,000"
+                                    data-month="Feb" />
+                                <circle cx="100" cy="130" r="5" class="chart-dot income" data-val="₦52,000"
+                                    data-month="Mar" />
+                                <circle cx="200" cy="145" r="5" class="chart-dot income" data-val="₦48,000"
+                                    data-month="Apr" />
+                                <circle cx="300" cy="90" r="5" class="chart-dot income" data-val="₦110,000"
+                                    data-month="May" />
+                                <circle cx="400" cy="80" r="5" class="chart-dot income" data-val="₦125,000"
+                                    data-month="Jun" />
+                                <circle cx="500" cy="50" r="5" class="chart-dot income" data-val="₦185,000"
+                                    data-month="Jul" />
+                                <circle cx="600" cy="30" r="5" class="chart-dot income" data-val="₦235,000"
+                                    data-month="Aug" />
+
+                                <circle cx="0" cy="180" r="5" class="chart-dot invest" data-val="₦10,000"
+                                    data-month="Feb" />
+                                <circle cx="100" cy="170" r="5" class="chart-dot invest" data-val="₦18,000"
+                                    data-month="Mar" />
+                                <circle cx="200" cy="155" r="5" class="chart-dot invest" data-val="₦25,000"
+                                    data-month="Apr" />
+                                <circle cx="300" cy="130" r="5" class="chart-dot invest" data-val="₦55,000"
+                                    data-month="May" />
+                                <circle cx="400" cy="120" r="5" class="chart-dot invest" data-val="₦70,000"
+                                    data-month="Jun" />
+                                <circle cx="500" cy="90" r="5" class="chart-dot invest" data-val="₦120,000"
+                                    data-month="Jul" />
+                                <circle cx="600" cy="70" r="5" class="chart-dot invest" data-val="₦150,000"
+                                    data-month="Aug" />
+                            </svg>
+
+                            <!-- Custom Chart Tooltip -->
+                            <div class="chart-tooltip" id="chart-tooltip">
+                                <p class="tooltip-month">Month</p>
+                                <p class="tooltip-value">Value</p>
+                            </div>
+                        </div>
+                        <div class="chart-labels">
+                            <span>Feb</span>
+                            <span>Mar</span>
+                            <span>Apr</span>
+                            <span>May</span>
+                            <span>Jun</span>
+                            <span>Jul</span>
+                            <span>Aug</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT SIDE COLUMN: Quick Actions & Auto-Invest Settings -->
+                <div class="right-column">
+                    <!-- Quick Actions Grid -->
+                    <div class="glass-card actions-widget">
+                        <h3 class="widget-title">Quick Actions</h3>
+                        <div class="actions-buttons-grid">
+                            <button class="action-btn" id="btn-deposit-modal">
+                                <div class="action-icon deposit">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="8 17 12 21 16 17" />
+                                        <line x1="12" y1="12" x2="12" y2="21" />
+                                        <path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29" />
+                                    </svg>
+                                </div>
+                                <span class="action-name">Deposit</span>
+                            </button>
+
+                            <button class="action-btn" id="btn-withdraw-modal">
+                                <div class="action-icon withdraw">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="16 16 12 12 8 16" />
+                                        <line x1="12" y1="12" x2="12" y2="21" />
+                                        <path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29" />
+                                    </svg>
+                                </div>
+                                <span class="action-name">Withdraw</span>
+                            </button>
+
+                            <button class="action-btn" id="btn-transfer-modal">
+                                <div class="action-icon transfer">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <line x1="7" y1="17" x2="17" y2="7" />
+                                        <polyline points="7 7 17 7 17 17" />
+                                    </svg>
+                                </div>
+                                <span class="action-name">Payment</span>
+                            </button>
+
+                            <button class="action-btn" id="btn-freeze-card">
+                                <div class="action-icon freeze" id="freeze-icon-wrap">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" id="freeze-svg">
+                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                                    </svg>
+                                </div>
+                                <span class="action-name" id="freeze-text">Freeze Card</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Auto-Invest Config Widget -->
+                    <div class="glass-card auto-invest-widget">
+                        <div class="widget-header-row">
+                            <h3 class="widget-title">Amber Auto-Invest</h3>
+                            <label class="switch">
+                                <input type="checkbox" id="autoinvest-toggle" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <p class="widget-desc">Automatically route transcription task earnings directly into your
+                            compounding high-yield investments.</p>
+
+                        <div class="autoinvest-settings-box" id="autoinvest-settings-box">
+                            <div class="slider-group">
+                                <div class="slider-header">
+                                    <label for="autoinvest-allocation">Routing Percentage</label>
+                                    <span class="val-display" id="allocation-val">25%</span>
+                                </div>
+                                <input type="range" class="range-slider" id="autoinvest-allocation" min="10" max="100"
+                                    step="5" value="25">
+                            </div>
+
+                            <div class="invest-plan-preview">
+                                <div class="plan-details">
+                                    <span class="lbl-plan">Target Allocation</span>
+                                    <span class="val-plan" id="payout-split">₦25 of every ₦100 earned</span>
+                                </div>
+                                <div class="plan-details">
+                                    <span class="lbl-plan">Selected Fund</span>
+                                    <span class="val-plan accent-color">Amber Student High-Yield (12.4% APY)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="autoinvest-disabled-msg" id="autoinvest-disabled-msg" style="display: none;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="12" y1="8" x2="12" y2="12" />
+                                <line x1="12" y1="16" x2="12.01" y2="16" />
+                            </svg>
+                            <span>Earnings will sit in your zero-interest standard wallet.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ledger Section (bottom — spans full grid) -->
+            <section class="glass-card ledger-section">
+                <div class="ledger-header">
+                    <div>
+                        <h3 class="widget-title">Recent Transactions</h3>
+                        <p class="widget-subtitle">A comprehensive breakdown of earnings, deposits, and investments</p>
+                    </div>
+                    <div class="ledger-filters">
+                        <button class="filter-btn active" data-filter="all">All Transactions</button>
+                        <button class="filter-btn" data-filter="credit">Income</button>
+                        <button class="filter-btn" data-filter="debit">Outgoing & Payouts</button>
+                    </div>
+                </div>
+
+                <div class="ledger-table-wrapper">
+                    <table class="ledger-table">
+                        <thead>
+                            <tr>
+                                <th>Transaction</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ledger-rows">
+                            <!-- French Transcription -->
+                            <tr class="ledger-row" data-type="credit">
+                                <td>
+                                    <div class="ledger-item">
+                                        <div class="item-icon credit">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                                                <path d="M19 10v1a7 7 0 0 1-14 0v-1M12 19v4M8 23h8" />
+                                            </svg>
+                                        </div>
+                                        <div class="item-info">
+                                            <p class="item-title">French Audio Transcription</p>
+                                            <p class="item-subtitle">Task ID #49281</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="ledger-category">Transcription Payout</span></td>
+                                <td><span class="ledger-date">Jul 11, 2026</span></td>
+                                <td><span class="ledger-amount credit">+₦15,000.00</span></td>
+                                <td><span class="ledger-status completed">Completed</span></td>
+                            </tr>
+                            <!-- Auto-Invest Allocation -->
+                            <tr class="ledger-row" data-type="debit">
+                                <td>
+                                    <div class="ledger-item">
+                                        <div class="item-icon investment">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <line x1="18" y1="20" x2="18" y2="10" />
+                                                <line x1="12" y1="20" x2="12" y2="4" />
+                                                <line x1="6" y1="20" x2="6" y2="14" />
+                                            </svg>
+                                        </div>
+                                        <div class="item-info">
+                                            <p class="item-title">Amber Auto-Invest Allocation</p>
+                                            <p class="item-subtitle">Routed from Task #49281 (25%)</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="ledger-category">Investment</span></td>
+                                <td><span class="ledger-date">Jul 11, 2026</span></td>
+                                <td><span class="ledger-amount debit">-₦3,750.00</span></td>
+                                <td><span class="ledger-status completed">Completed</span></td>
+                            </tr>
+                            <!-- Spanish Video Translation -->
+                            <tr class="ledger-row" data-type="credit">
+                                <td>
+                                    <div class="ledger-item">
+                                        <div class="item-icon credit">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                                                <path d="M19 10v1a7 7 0 0 1-14 0v-1M12 19v4M8 23h8" />
+                                            </svg>
+                                        </div>
+                                        <div class="item-info">
+                                            <p class="item-title">Spanish Translation Task</p>
+                                            <p class="item-subtitle">Task ID #48291</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="ledger-category">Translation Payout</span></td>
+                                <td><span class="ledger-date">Jul 09, 2026</span></td>
+                                <td><span class="ledger-amount credit">+₦18,500.00</span></td>
+                                <td><span class="ledger-status completed">Completed</span></td>
+                            </tr>
+                            <!-- Auto-Invest Allocation -->
+                            <tr class="ledger-row" data-type="debit">
+                                <td>
+                                    <div class="ledger-item">
+                                        <div class="item-icon investment">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <line x1="18" y1="20" x2="18" y2="10" />
+                                                <line x1="12" y1="20" x2="12" y2="4" />
+                                                <line x1="6" y1="20" x2="6" y2="14" />
+                                            </svg>
+                                        </div>
+                                        <div class="item-info">
+                                            <p class="item-title">Amber Auto-Invest Allocation</p>
+                                            <p class="item-subtitle">Routed from Task #48291 (25%)</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="ledger-category">Investment</span></td>
+                                <td><span class="ledger-date">Jul 09, 2026</span></td>
+                                <td><span class="ledger-amount debit">-₦4,625.00</span></td>
+                                <td><span class="ledger-status completed">Completed</span></td>
+                            </tr>
+                            <!-- Bank Payout/Withdrawal -->
+                            <tr class="ledger-row" data-type="debit">
+                                <td>
+                                    <div class="ledger-item">
+                                        <div class="item-icon payout">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <polyline points="16 16 12 12 8 16" />
+                                                <line x1="12" y1="12" x2="12" y2="21" />
+                                                <path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29" />
+                                            </svg>
+                                        </div>
+                                        <div class="item-info">
+                                            <p class="item-title">Standard Bank Payout</p>
+                                            <p class="item-subtitle">Wema Bank - 0291****29</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="ledger-category">Withdrawal</span></td>
+                                <td><span class="ledger-date">Jul 05, 2026</span></td>
+                                <td><span class="ledger-amount debit">-₦45,000.00</span></td>
+                                <td><span class="ledger-status completed">Completed</span></td>
+                            </tr>
+                            <!-- Hmong Conversation -->
+                            <tr class="ledger-row" data-type="credit">
+                                <td>
+                                    <div class="ledger-item">
+                                        <div class="item-icon credit">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                                                <path d="M19 10v1a7 7 0 0 1-14 0v-1M12 19v4M8 23h8" />
+                                            </svg>
+                                        </div>
+                                        <div class="item-info">
+                                            <p class="item-title">Hmong Conversational Audio</p>
+                                            <p class="item-subtitle">Task ID #47118</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="ledger-category">Transcription Payout</span></td>
+                                <td><span class="ledger-date">Jul 01, 2026</span></td>
+                                <td><span class="ledger-amount credit">+₦9,450.00</span></td>
+                                <td><span class="ledger-status completed">Completed</span></td>
+                            </tr>
+                            <!-- Pending Deposit -->
+                            <tr class="ledger-row" data-type="credit">
+                                <td>
+                                    <div class="ledger-item">
+                                        <div class="item-icon credit">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                                                <line x1="2" y1="10" x2="22" y2="10" />
+                                            </svg>
+                                        </div>
+                                        <div class="item-info">
+                                            <p class="item-title">External Card Deposit</p>
+                                            <p class="item-subtitle">Visa Card **** 4291</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="ledger-category">Deposit</span></td>
+                                <td><span class="ledger-date">Jun 28, 2026</span></td>
+                                <td><span class="ledger-amount credit">+₦50,000.00</span></td>
+                                <td><span class="ledger-status pending">Pending</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- --- DEPOSIT MODAL --- -->
+    <div class="modal-overlay" id="modal-deposit">
+        <div class="modal-card">
+            <button class="modal-close-btn" data-close="modal-deposit">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+            <div class="modal-header">
+                <h3>Fund Amber Wallet</h3>
+                <p>Add funds to your available wallet balance</p>
+            </div>
+            <form class="modal-form" id="form-deposit">
+                <div class="form-group">
+                    <label>Funding Source</label>
+                    <select class="form-input">
+                        <option>Bank Transfer (Wema Bank Host)</option>
+                        <option>Visa/Mastercard Debit Card (**** 4291)</option>
+                        <option>Direct Tasks Revenue Accrual</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Deposit Amount (₦)</label>
+                    <input type="number" class="form-input" placeholder="Enter amount (e.g. 5,000)" min="100" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-cancel" data-close="modal-deposit">Cancel</button>
+                    <button type="submit" class="btn btn-confirm">Complete Deposit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- --- WITHDRAW MODAL --- -->
+    <div class="modal-overlay" id="modal-withdraw">
+        <div class="modal-card">
+            <button class="modal-close-btn" data-close="modal-withdraw">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+            <div class="modal-header">
+                <h3>Withdraw Funds</h3>
+                <p>Transfer money from available balance to your bank</p>
+            </div>
+            <form class="modal-form" id="form-withdraw">
+                <div class="form-group">
+                    <label>Select Bank</label>
+                    <select class="form-input" required>
+                        <option>Wema Bank (0291244829 - Akinpelu Akinoluwa)</option>
+                        <option>Access Bank (1029481191 - Akinpelu Akinoluwa)</option>
+                        <option>GTBank (0182491129 - Akinpelu Akinoluwa)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Withdrawal Amount (₦)</label>
+                    <input type="number" class="form-input" id="withdraw-amount-input" placeholder="Available: ₦300,424"
+                        max="300424" min="500" required>
+                    <span class="input-note">Fee: ₦0.00 (Free Student Tier account)</span>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-cancel" data-close="modal-withdraw">Cancel</button>
+                    <button type="submit" class="btn btn-confirm">Request Withdrawal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- --- TRANSFER MODAL --- -->
+    <div class="modal-overlay" id="modal-transfer">
+        <div class="modal-card">
+            <button class="modal-close-btn" data-close="modal-transfer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+            <div class="modal-header">
+                <h3>Send Payment</h3>
+                <p>Instantly transfer funds to another AmberScript user or merchant</p>
+            </div>
+            <form class="modal-form" id="form-transfer">
+                <div class="form-group">
+                    <label>Recipient Email or Username</label>
+                    <input type="text" class="form-input" placeholder="e.g. john@student.edu" required>
+                </div>
+                <div class="form-group">
+                    <label>Amount (₦)</label>
+                    <input type="number" class="form-input" placeholder="Enter amount" max="300424" min="10" required>
+                </div>
+                <div class="form-group">
+                    <label>Reference Note (Optional)</label>
+                    <input type="text" class="form-input" placeholder="e.g., Shared transcript project cost">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-cancel" data-close="modal-transfer">Cancel</button>
+                    <button type="submit" class="btn btn-confirm">Confirm Transfer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- --- TOAST NOTIFICATIONS WRAPPER --- -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- --- INTERACTIVE SCRIPTS --- -->
+    <script>
+        // --- Date setup ---
+        const dateEl = document.getElementById('current-date');
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        dateEl.innerText = new Date('2026-07-11T11:00:00').toLocaleDateString('en-US', options);
+
+        // --- Card Freezing Mechanism ---
+        let isCardFrozen = false;
+        const debitCard = document.getElementById('debit-card');
+        const btnFreeze = document.getElementById('btn-freeze-card');
+        const freezeText = document.getElementById('freeze-text');
+        const freezeIconWrap = document.getElementById('freeze-icon-wrap');
+        const cardFrozenOverlay = document.getElementById('card-frozen-overlay');
+
+        btnFreeze.addEventListener('click', () => {
+            isCardFrozen = !isCardFrozen;
+            if (isCardFrozen) {
+                debitCard.classList.add('frozen');
+                cardFrozenOverlay.classList.add('visible');
+                freezeText.innerText = 'Unfreeze Card';
+                freezeIconWrap.classList.add('card-is-frozen');
+                showToast('Virtual card frozen successfully.', 'warning');
+            } else {
+                debitCard.classList.remove('frozen');
+                cardFrozenOverlay.classList.remove('visible');
+                freezeText.innerText = 'Freeze Card';
+                freezeIconWrap.classList.remove('card-is-frozen');
+                showToast('Virtual card active and ready.', 'success');
+            }
+        });
+
+        // --- Auto-Invest Setting UI Interactions ---
+        const autoinvestToggle = document.getElementById('autoinvest-toggle');
+        const autoinvestSettings = document.getElementById('autoinvest-settings-box');
+        const autoinvestDisabledMsg = document.getElementById('autoinvest-disabled-msg');
+        const allocationSlider = document.getElementById('autoinvest-allocation');
+        const allocationVal = document.getElementById('allocation-val');
+        const payoutSplit = document.getElementById('payout-split');
+
+        autoinvestToggle.addEventListener('change', () => {
+            if (autoinvestToggle.checked) {
+                autoinvestSettings.style.display = 'block';
+                autoinvestDisabledMsg.style.display = 'none';
+                showToast('Auto-invest activated.', 'success');
+            } else {
+                autoinvestSettings.style.display = 'none';
+                autoinvestDisabledMsg.style.display = 'flex';
+                showToast('Auto-invest disabled.', 'info');
+            }
+        });
+
+        allocationSlider.addEventListener('input', (e) => {
+            const val = e.target.value;
+            allocationVal.innerText = `${val}%`;
+            payoutSplit.innerText = `₦${val} of every ₦100 earned`;
+        });
+
+        // --- Modal Dialog Toggle Controllers ---
+        const openModalBtns = {
+            'btn-deposit-modal': 'modal-deposit',
+            'btn-withdraw-modal': 'modal-withdraw',
+            'btn-transfer-modal': 'modal-transfer'
+        };
+
+        Object.entries(openModalBtns).forEach(([btnId, modalId]) => {
+            document.getElementById(btnId).addEventListener('click', () => {
+                // If card is frozen and action is withdraw/payment, warn user
+                if (isCardFrozen && (modalId === 'modal-withdraw' || modalId === 'modal-transfer')) {
+                    showToast('Cannot perform outgoing transactions when card is frozen!', 'error');
+                    return;
+                }
+                const modal = document.getElementById(modalId);
+                modal.classList.add('visible');
+            });
+        });
+
+        // Close logic
+        document.querySelectorAll('[data-close]').forEach(element => {
+            element.addEventListener('click', (e) => {
+                e.preventDefault();
+                const modalId = element.getAttribute('data-close');
+                document.getElementById(modalId).classList.remove('visible');
+            });
+        });
+
+        // Close on overlay backdrop click
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.classList.remove('visible');
+                }
+            });
+        });
+
+        // Form Submit preventDefault + toast feedback
+        const forms = {
+            'form-deposit': { msg: 'Deposit processing in background.', modal: 'modal-deposit' },
+            'form-withdraw': { msg: 'Withdrawal request submitted.', modal: 'modal-withdraw' },
+            'form-transfer': { msg: 'Payment transferred successfully.', modal: 'modal-transfer' }
+        };
+
+        Object.entries(forms).forEach(([formId, data]) => {
+            document.getElementById(formId).addEventListener('submit', (e) => {
+                e.preventDefault();
+                document.getElementById(data.modal).classList.remove('visible');
+                showToast(data.msg, 'success');
+                e.target.reset();
+            });
+        });
+
+        // --- Ledger Filter Controller ---
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const ledgerRows = document.querySelectorAll('.ledger-row');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Set active class
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+                ledgerRows.forEach(row => {
+                    if (filter === 'all' || row.dataset.type === filter) {
+                        row.style.display = 'table-row';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // --- Interactive SVG Chart Tooltips ---
+        const svgChart = document.getElementById('svg-chart');
+        const tooltip = document.getElementById('chart-tooltip');
+        const tooltipMonth = tooltip.querySelector('.tooltip-month');
+        const tooltipValue = tooltip.querySelector('.tooltip-value');
+        const chartDots = document.querySelectorAll('.chart-dot');
+
+        chartDots.forEach(dot => {
+            dot.addEventListener('mouseenter', (e) => {
+                const val = dot.getAttribute('data-val');
+                const month = dot.getAttribute('data-month');
+                const isIncome = dot.classList.contains('income');
+
+                tooltipMonth.innerText = `${month} 2026`;
+                tooltipValue.innerText = `${isIncome ? 'Earned' : 'Invested'}: ${val}`;
+                tooltipValue.style.color = isIncome ? 'var(--color-accent)' : 'var(--color-investment)';
+
+                // Position tooltip relative to chart container
+                const rect = dot.getBoundingClientRect();
+                const containerRect = svgChart.getBoundingClientRect();
+
+                const leftPos = rect.left - containerRect.left + (rect.width / 2) - 60;
+                const topPos = rect.top - containerRect.top - 55;
+
+                tooltip.style.left = `${leftPos}px`;
+                tooltip.style.top = `${topPos}px`;
+                tooltip.classList.add('visible');
+            });
+
+            dot.addEventListener('mouseleave', () => {
+                tooltip.classList.remove('visible');
+            });
+        });
+
+        // --- Toast Alert system ---
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+
+            // Get SVGs based on alert type
+            let iconSvg = '';
+            if (type === 'success') {
+                iconSvg = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`;
+            } else if (type === 'warning') {
+                iconSvg = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`;
+            } else if (type === 'error') {
+                iconSvg = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>`;
+            } else {
+                iconSvg = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>`;
+            }
+
+            toast.innerHTML = `
+                <div class="toast-icon">${iconSvg}</div>
+                <div class="toast-body">${message}</div>
+            `;
+
+            container.appendChild(toast);
+
+            // Trigger animation
+            setTimeout(() => {
+                toast.classList.add('visible');
+            }, 10);
+
+            // Remove after 3.5s
+            setTimeout(() => {
+                toast.classList.remove('visible');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3500);
+        }
+    </script>
 </body>
+
 </html>
