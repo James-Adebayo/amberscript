@@ -83,7 +83,9 @@ body {
     border-radius: 8px;
     transition: var(--transition-smooth);
     position: relative;
+    width: 100%;
 }
+
 
 .nav-item:hover {
     background-color: var(--color-bg-secondary);
@@ -1300,9 +1302,732 @@ input:checked+.slider:before {
 }
 
 
+/* --- SPA VIEW TRANSITIONS --- */
+.wallet-view {
+    display: none;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wallet-view.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#view-dashboard.wallet-view.active {
+    display: grid;
+}
+
+
+/* --- NOTIFICATION CENTER DROPDOWN --- */
+.header-notification {
+    position: relative;
+}
+
+.notification-dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    width: 360px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    z-index: 1100;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+}
+
+.notification-dropdown.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.notif-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.notif-header h4 {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin: 0;
+}
+
+.mark-all-btn, .clear-all-btn {
+    background: none;
+    border: none;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.mark-all-btn:hover, .clear-all-btn:hover {
+    color: var(--color-accent-hover);
+}
+
+.notif-list {
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.notif-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.85rem 1.25rem;
+    border-bottom: 1px solid var(--color-border-light);
+    position: relative;
+    transition: var(--transition-fast);
+}
+
+.notif-item:hover {
+    background-color: var(--color-bg-secondary);
+}
+
+.notif-item.unread {
+    background-color: var(--color-accent-light);
+}
+
+.notif-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.notif-icon.success { background-color: #d1fae5; color: var(--color-success); }
+.notif-icon.yield { background-color: var(--color-investment-light); color: var(--color-investment); }
+.notif-icon.security { background-color: var(--color-primary-light); color: var(--color-primary); }
+
+.notif-content {
+    flex-grow: 1;
+    padding-right: 0.5rem;
+}
+
+.notif-text {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.notif-time {
+    font-size: 0.65rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    display: block;
+    margin-top: 0.2rem;
+}
+
+.notif-dismiss {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    opacity: 0.5;
+    padding: 0;
+    transition: var(--transition-fast);
+    line-height: 1;
+}
+
+.notif-dismiss:hover {
+    color: var(--color-error);
+    opacity: 1;
+}
+
+.notif-footer {
+    padding: 0.75rem;
+    text-align: center;
+    border-top: 1px solid var(--color-border-light);
+}
+
+.clear-all-btn {
+    color: var(--color-text-secondary);
+}
+
+.clear-all-btn:hover {
+    color: var(--color-error);
+}
+
+
+/* --- VIEW: LEDGER STYLES --- */
+.subpage-header {
+    margin-bottom: 2rem;
+}
+
+.subpage-title h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+}
+
+.subpage-title p {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+.ledger-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.metric-card {
+    padding: 1.25rem 1.5rem;
+}
+
+.metric-val {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+}
+
+.metric-val.credit { color: var(--color-accent); }
+.metric-val.debit { color: var(--color-text-primary); }
+.metric-val.flow { color: var(--color-primary); }
+
+.full-ledger-card {
+    padding: 0 !important;
+    overflow: hidden;
+}
+
+.ledger-search-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--color-border-light);
+    background: rgba(255, 255, 255, 0.4);
+    gap: 1.5rem;
+}
+
+.search-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-primary);
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    flex-grow: 1;
+    max-width: 480px;
+}
+
+.search-input-wrapper input {
+    all: unset;
+    font-size: 0.85rem;
+    width: 100%;
+}
+
+.search-icon {
+    color: var(--color-text-secondary);
+}
+
+.view-all-ledger-link {
+    background: none;
+    border: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.view-all-ledger-link:hover {
+    color: var(--color-accent-hover);
+    transform: translateX(3px);
+}
+
+
+/* --- VIEW: INVESTMENTS STYLES --- */
+.investments-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.invest-portfolio-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.portfolio-main h3 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin: 0.25rem 0;
+}
+
+.portfolio-apy {
+    font-size: 0.8rem;
+    color: var(--color-accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.portfolio-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+    border-top: 1px solid var(--color-border-light);
+    border-bottom: 1px solid var(--color-border-light);
+    padding: 1.25rem 0;
+}
+
+.p-metric {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+}
+
+.portfolio-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.portfolio-actions button {
+    flex-grow: 1;
+}
+
+.compounding-tool-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.catalog-header {
+    margin-bottom: 1.25rem;
+}
+
+.catalog-header h4 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--color-primary);
+}
+
+.investments-catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.fund-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 240px;
+    border: 2px solid transparent;
+}
+
+.fund-card.active {
+    border-color: var(--color-accent);
+    background: radial-gradient(circle at 100% 0%, var(--color-accent-light) 0%, var(--color-bg-primary) 80%);
+}
+
+.fund-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+}
+
+.fund-card-header h5 {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin: 0;
+}
+
+.fund-badge-active {
+    font-size: 0.65rem;
+    font-weight: 700;
+    background-color: var(--color-accent-light);
+    color: var(--color-accent);
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    text-transform: uppercase;
+}
+
+.fund-badge-status {
+    font-size: 0.65rem;
+    font-weight: 700;
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-secondary);
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+}
+
+.fund-desc {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.fund-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    border-top: 1px solid var(--color-border-light);
+    padding-top: 0.75rem;
+}
+
+.select-fund-btn {
+    width: 100%;
+    padding: 0.6rem !important;
+    font-size: 0.8rem !important;
+    border-radius: 8px !important;
+}
+
+
+/* --- VIEW: INBOX STYLES --- */
+.inbox-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    height: 520px;
+    padding: 0 !important;
+    overflow: hidden;
+}
+
+.inbox-master {
+    border-right: 1px solid var(--color-border-light);
+    overflow-y: auto;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.inbox-item {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--color-border-light);
+    cursor: pointer;
+    position: relative;
+    transition: var(--transition-fast);
+}
+
+.inbox-item:hover {
+    background-color: rgba(1, 90, 80, 0.02);
+}
+
+.inbox-item.active {
+    background-color: var(--color-primary-light);
+}
+
+.inbox-item-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.inbox-item-sender {
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.inbox-item h5 {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.inbox-item-excerpt {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.inbox-unread-dot {
+    position: absolute;
+    top: 1.4rem;
+    right: 1.5rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+}
+
+.inbox-detail {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+    background-color: var(--color-bg-primary);
+}
+
+.inbox-detail-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--color-border-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.inbox-detail-meta h4 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+}
+
+.sender-info {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.sender-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--color-accent-light);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+.sender-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.sender-email {
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+.msg-date-header {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    font-weight: 600;
+}
+
+.inbox-detail-body {
+    padding: 1.5rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--color-text-primary);
+}
+
+
+/* --- VIEW: SETTINGS STYLES --- */
+.settings-grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+}
+
+.settings-menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.25rem;
+    align-self: flex-start;
+}
+
+.settings-menu-item {
+    all: unset;
+    display: block;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.settings-menu-item:hover {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-primary);
+}
+
+.settings-menu-item.active {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+.settings-content-card {
+    min-height: 400px;
+}
+
+.settings-panel {
+    display: none;
+    animation: fadeIn 0.3s;
+}
+
+.settings-panel.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.settings-panel h4 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border-light);
+    padding-bottom: 0.75rem;
+    margin-top: 0;
+}
+
+.form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.save-settings-btn {
+    margin-top: 1rem;
+}
+
+.card-limits-group {
+    margin-bottom: 2rem;
+    background-color: var(--color-bg-secondary);
+    border-radius: 12px;
+    padding: 1.25rem;
+    border: 1px solid var(--color-border-light);
+}
+
+.settings-toggles-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.toggle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border-light);
+    padding-bottom: 1rem;
+}
+
+.toggle-row:last-child {
+    border-bottom: none;
+}
+
+.toggle-row h5 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.15rem;
+    margin-top: 0;
+}
+
+.card-actions-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.card-actions-row button {
+    flex-grow: 1;
+}
+
+.linked-banks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.bank-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem !important;
+}
+
+.bank-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.bank-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background-color: var(--color-accent-light);
+    color: var(--color-accent);
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+}
+
+.bank-row h5 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin: 0;
+}
+
+.bank-status-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    background-color: var(--color-accent-light);
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+}
+
+
 /* --- RESPONSIVE MEDIA QUERIES --- */
 @media (max-width: 1100px) {
     .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    .investments-layout-grid {
+        grid-template-columns: 1fr;
+    }
+    .settings-grid-layout {
         grid-template-columns: 1fr;
     }
 }
@@ -1325,4 +2050,247 @@ input:checked+.slider:before {
     .actions-buttons-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+    
+    .ledger-metrics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .investments-catalog-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .inbox-layout-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    
+    .inbox-detail {
+        height: 400px;
+        border-top: 1px solid var(--color-border-light);
+    }
+    
+    .form-row-2 {
+        grid-template-columns: 1fr;
+    }
+    
+    .notification-dropdown {
+        width: 310px;
+        right: -10px;
+    }
+    
+    .ledger-search-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+
+/* =====================================================
+   MISSING UTILITY & COMPONENT STYLES
+   ===================================================== */
+
+/* --- Colour text helpers used inline (val-plan variants) --- */
+.val-plan.success { color: var(--color-success); }
+.val-plan.error   { color: var(--color-error); }
+.val-plan.warning { color: var(--color-warning); }
+.val-plan.accent-color { color: var(--color-accent); font-weight: 700; }
+
+/* Inline amount colour helpers */
+.credit { color: var(--color-accent); }
+.debit  { color: var(--color-error); }
+
+/* --- #view-dashboard grid override ---
+   The outer .wallet-view.active sets display:block by default,
+   but the dashboard has an inner two-column .dashboard-grid that
+   already handles layout. We just need it to be a normal block
+   container so the inner grids flow correctly. */
+#view-dashboard.wallet-view.active {
+    display: block;
+}
+
+/* --- Compounding Simulator Card --- */
+.calc-header {
+    margin-bottom: 1.25rem;
+}
+
+.calc-header h4 {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+}
+
+.calc-header p {
+    font-size: 0.78rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+.calc-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+}
+
+.input-val {
+    font-weight: 800;
+    color: var(--color-primary);
+}
+
+.calc-outputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--color-border-light);
+    padding-top: 1.25rem;
+}
+
+.output-box {
+    background-color: var(--color-bg-secondary);
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.output-box.accented {
+    background-color: var(--color-accent-light);
+    border: 1px solid rgba(50, 150, 120, 0.2);
+}
+
+.output-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.output-value {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--color-primary);
+}
+
+.output-box.accented .output-value {
+    color: var(--color-accent);
+}
+
+/* --- Linked Bank button spacing --- */
+.settings-panel .btn-confirm {
+    margin-top: 1.25rem;
+}
+
+/* --- Inbox "link new bank" button spacing --- */
+#btn-link-bank {
+    margin-top: 1.5rem;
+}
+
+/* --- Fund card min-height fix on smaller screens --- */
+@media (max-width: 1100px) {
+    .fund-card {
+        height: auto;
+        min-height: 200px;
+    }
+
+    .calc-outputs {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =====================================================
+   REMAINING MISSING COMPONENT STYLES
+   ===================================================== */
+
+/* Portfolio balance display */
+.investment-balance-val {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin: 0.3rem 0;
+    line-height: 1.1;
+}
+
+/* Linked banks list margins */
+.linked-banks-list {
+    margin-bottom: 1.5rem;
+}
+
+/* Bank row glass-card inner override — remove default padding duplication */
+.linked-banks-list .glass-card {
+    padding: 1rem 1.25rem !important;
+    margin: 0;
+}
+
+/* Sub-view top padding so content clears the sticky header cleanly */
+#view-ledger,
+#view-investments,
+#view-inbox,
+#view-settings {
+    padding-top: 0.25rem;
+}
+
+/* Inbox layout wrapper - give it some top breathing room */
+#view-inbox .inbox-layout-grid {
+    margin-top: 0;
+}
+
+/* Investment portfolio apy label */
+.portfolio-apy {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-accent);
+    margin-top: 0.2rem;
+}
+
+/* Investment portfolio balance lbl */
+.portfolio-main .lbl-small {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Settings form group spacing */
+.settings-form-element .form-group {
+    margin-bottom: 0;
+}
+
+/* Settings content card doesn't need extra top margin */
+.settings-content-card {
+    padding-top: 1.5rem !important;
+}
+
+/* Redeem / withdraw invest button secondary style */
+#btn-redeem-invest {
+    font-size: 0.85rem;
+}
+
+/* Badge on inbox nav link */
+#inbox-badge-count {
+    display: inline-flex;
+}
+
+/* Notification bell icon wrapper – needs relative positioning so dropdown
+   positions off the bell, not the entire header-notification div */
+#notification-bell-btn {
+    position: relative;
 }
