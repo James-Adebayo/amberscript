@@ -7,7 +7,6 @@ const port = 3000;
 
 app.use(express.static(path.join(__dirname, "frontend")));
 
-const verified = false;
 
 const routes = {
     "/": "index.html",
@@ -23,7 +22,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get("/", protectedRoute, (req, res) => {
+app.get("/", (req, res) => {
     const file = routes[req.path];
 
     if (file) {
@@ -33,13 +32,5 @@ app.get("/", protectedRoute, (req, res) => {
     }
 });
 
-function protectedRoute(req, res, next) {
-    if (!verified) {
-        return res.redirect('/auth');
-    }
-    next();
-}
 
 module.exports = app;
-
-// app.listen(port, () => console.log(`Server running at http://localhost:${port}`));
