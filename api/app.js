@@ -1,0 +1,14 @@
+require("dotenv").config();
+
+const express = require("express");
+const path = require("path");
+
+const removeTrailingSlash = require("./middleware/removeTrailingSlash");
+const webRoutes = require("./routes/web");
+
+const app = express();
+
+// app.use(removeTrailingSlash);
+app.use(express.static(path.join(__dirname, "frontend")));
+app.use("/", webRoutes);
+module.exports = app;
