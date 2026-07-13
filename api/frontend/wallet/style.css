@@ -39,6 +39,25 @@ body {
     border-right: 1px solid var(--color-border-light);
 }
 
+.sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(43, 41, 45, 0.35);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
 .sidebar-wrapper {
     display: flex;
     flex-direction: column;
@@ -193,6 +212,38 @@ body {
     grid-column: 1 / -1;
     padding-bottom: 1.75rem;
     border-bottom: 1px solid var(--color-border-light);
+}
+
+.header-welcome-wrap {
+    display: flex;
+    align-items: center;
+}
+
+.hamburger-menu-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background-color: var(--color-bg-primary);
+    border: 1px solid var(--color-border-light);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    margin-right: 1.25rem;
+    flex-shrink: 0;
+}
+
+.hamburger-menu-btn:hover {
+    color: var(--color-primary);
+    border-color: var(--color-border);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.hamburger-menu-btn:active {
+    transform: translateY(0);
 }
 
 .date-today {
@@ -2034,13 +2085,43 @@ input:checked+.slider:before {
 
 @media (max-width: 768px) {
     .sidebar {
-        display: none;
-        /* In production a hamburger menu would trigger it */
+        display: block;
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        z-index: 1000;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: none;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+        box-shadow: 0 0 24px rgba(43, 41, 45, 0.15);
+    }
+
+    .hamburger-menu-btn {
+        display: flex;
     }
 
     .main-content {
         margin-left: 0;
         padding: 1.5rem;
+    }
+
+    .welcome-text {
+        font-size: 1.35rem;
+    }
+
+    .modal-card {
+        width: 92%;
+        padding: 1.75rem;
+    }
+
+    .card-actions-row {
+        flex-direction: column;
+        gap: 0.75rem;
     }
 
     .stats-cards-grid {

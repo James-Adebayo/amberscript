@@ -16,7 +16,8 @@
 <body>
     <div class="app-layout">
         <!-- --- SIDEBAR --- -->
-        <aside class="sidebar">
+        <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+        <aside class="sidebar" id="app-sidebar">
             <div class="sidebar-wrapper">
                 <div class="sidebar-header" onclick="window.location.href = '/'" style="cursor: pointer;">
                     <img src="../assets/images/logo/logo-t.png" alt="AmberScript Logo" class="brand-logo">
@@ -91,9 +92,19 @@
             <div class="dashboard-grid">
                 <!-- Top welcome header row spanning both columns -->
                 <header class="dashboard-header">
-                    <div class="header-welcome">
-                        <p class="date-today" id="current-date">July 11, 2026</p>
-                        <h2 class="welcome-text">Welcome back, <span class="accent-username">James</span></h2>
+                    <div class="header-welcome-wrap">
+                        <button class="hamburger-menu-btn" id="hamburger-menu-btn" aria-label="Toggle Navigation Menu">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="3" y1="12" x2="21" y2="12"></line>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <line x1="3" y1="18" x2="21" y2="18"></line>
+                            </svg>
+                        </button>
+                        <div class="header-welcome">
+                            <p class="date-today" id="current-date">July 11, 2026</p>
+                            <h2 class="welcome-text">Welcome back, <span class="accent-username">James</span></h2>
+                        </div>
                     </div>
                     <div class="header-notification">
                         <div class="notification-bell" id="notification-bell-btn">
@@ -1067,7 +1078,7 @@
         // --- Date setup ---
         const dateEl = document.getElementById('current-date');
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        dateEl.innerText = new Date('2026-07-11T11:00:00').toLocaleDateString('en-US', options);
+        dateEl.innerText = new Date().toLocaleDateString('en-US', options);
 
         // --- SPA Views Tab Switch Logic ---
         const viewTabs = {
@@ -1608,6 +1619,32 @@
                 }, 300);
             }, 3500);
         }
+
+        // --- Mobile Sidebar Toggle Logic ---
+        const hamburgerBtn = document.getElementById('hamburger-menu-btn');
+        const sidebar = document.getElementById('app-sidebar');
+        const sidebarBackdrop = document.getElementById('sidebar-backdrop');
+        const navItems = document.querySelectorAll('.sidebar-nav .nav-item');
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('open');
+            sidebarBackdrop.classList.toggle('open');
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            sidebarBackdrop.classList.remove('open');
+        }
+
+        if (hamburgerBtn) {
+            hamburgerBtn.addEventListener('click', toggleSidebar);
+        }
+        if (sidebarBackdrop) {
+            sidebarBackdrop.addEventListener('click', closeSidebar);
+        }
+        navItems.forEach(item => {
+            item.addEventListener('click', closeSidebar);
+        });
     </script>
 </body>
 
