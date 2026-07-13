@@ -1,4 +1,4 @@
-@import url("/frontend/assets/css/styles.css");
+@import url("../../assets/css/styles.css");
 body
 {
     background: radial-gradient(circle at 80% 20%, var(--color-accent-light) 0%, var(--color-bg-primary) 60%);
