@@ -115,9 +115,7 @@ Security
 
 Installation
 
-git clone https://github.com/yourusername/amberscript-clone.git
-
-cd amberscript-clone
+git clone https://github.com/James-Adebayo/amberscript.git
 
 npm install
 
