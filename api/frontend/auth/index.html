@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="style.css">
     <title>Authentication — AmberScript</title>
 </head>
+
 <body>
     <div class="toast-container"></div>
     <main>
         <div class="form">
-           <div class="auth-container">
+            <div class="auth-container">
                 <div class="signin authentication">
-                    <form data-url = "signin">
-                        <img src="../assets/images/logo/logo-t.png" alt="AmberScript logo" width="50%" onclick="window.location.href='/'">
+                    <form data-url="signin">
+                        <img src="../assets/images/logo/logo-t.png" alt="AmberScript logo" width="50%"
+                            onclick="window.location.href='/'">
                         <div class="form-group">
                             <label for="email">Email*</label>
                             <input type="email" name="email" id="email">
@@ -24,7 +27,7 @@
                         </div>
                         <div class="error"></div>
                         <div class="form-group">
-                            <button type="submit" data-url = "signin" id="signin-btn">Sign in</button>
+                            <button type="submit" data-url="signin" id="signin-btn">Sign in</button>
                         </div>
                         <div class="form-group">
                             <input type="checkbox" id="sign-up" name="choice" hidden>
@@ -33,8 +36,9 @@
                     </form>
                 </div>
                 <div class="signup authentication">
-                    <form data-url = "signup">
-                        <img src="../assets/images/logo/logo-t.png" alt="AmberScript logo"  width="50%" onclick="window.location.href='/'">
+                    <form data-url="signup">
+                        <img src="../assets/images/logo/logo-t.png" alt="AmberScript logo" width="50%"
+                            onclick="window.location.href='/'">
                         <div class="form-group">
                             <label for="email">Email*</label>
                             <input type="email" name="email" id="email">
@@ -57,9 +61,10 @@
                         </div>
                     </form>
                 </div>
-           </div>
+            </div>
         </div>
     </main>
     <script src="auth.js"></script>
 </body>
+
 </html>
