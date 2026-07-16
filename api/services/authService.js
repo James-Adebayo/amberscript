@@ -1,31 +1,50 @@
 const authRepo = require('../repository/authRepository');
+const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken");
 class AuthService {
     constructor() {
         this.authRepo = authRepo;
     }
     async signin(email, password) {
-        if (!email || !password) {
-            return { success: false, message: "Email or password field empty" };
-        };
-        // const user = authRepo.signin(email, password);
-        // if (!user){
-        //     return {success: false, message: "Invalid Credentials"}
-        // }
+        if (!email && !password) return { error: "Email and password empty" };
+        if (!email) return { error: "Email empty" };
+        if (!password) return { error: "Password empty" };
 
-        return { success: true, message: "Sign in successful" };
-        // check password etc.
-        // const isMatch = await bcrypt
-        // checking of bcrypt here then use of tokens
+        const user = await this.authRepo.signin(email);
+        if (!user) {
+            return { error: "Invalid Credentials" }
+        }
+        const isMatch = await bcrypt.compare(password, user.password);
 
-        // if successful return success message and token
+        if (!isMatch) return { error: "Invalid credentials" };
+
+        const token = jwt.sign(
+            { id: user.id, email: user.email },
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
+        );
+
+        // res.cookie('token', token, {
+        //     httpOnly: true,
+        //     secure: process.env.NODE_ENV === 'production',
+        //     sameSite: 'strict',
+        //     maxAge: 60 * 60 * 1000
+        // });
+        return { message: "Sign in successful", token: token };
     }
 
-    async signup(email, password) {
-        if (!email || !password) {
-            return { success: false, message: "Email or password field empty" };
-        };
+    async signup(username, email, password) {
+        if (!username && !email && !password) return { error: "Email and password empty" };
+        if (!username) return { error: "Username empty" };
+        if (!email) return { error: "Email empty" };
+        if (!password) return { error: "Password empty" };
 
-        return { success: true, message: "Sign up successful" };
+        const passwordHash = await bcrypt.hash(password, 10);
+
+        const user = await this.authRepo.signup(username, email, passwordHash);
+        if (!user) return { error: "account creation failed" };
+
+        return { message: "Sign up successful" };
     }
 }
 

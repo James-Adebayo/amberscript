@@ -7,19 +7,15 @@ class AuthRepository {
         const sql = "SELECT id, email, password FROM users WHERE email = ? LIMIT 1";
         const [rows] = await database.query(sql, [email]);
 
-        if (rows.length === 0) {
-            return {
-                success: false,
-                message: "User not found"
-            }
-        };
+        return rows[0] || null;
+    }
 
-        const user = rows[0];
-        if (!user) {
-            return { success: false, message: 'user not found' };
-        }
+    async signup(username, email, password) {
+        const sql = "INSERT INTO users(username, email, password) VALUES (?, ?, ?)";
 
-        return { success: true, message: user };
+        const results = await database.query(sql, [username, email, password]);
+
+        return results || null
     }
 }
 

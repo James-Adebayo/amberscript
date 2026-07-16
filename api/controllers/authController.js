@@ -6,19 +6,25 @@ class AuthController {
     async signin(req, res) {
         const { email, password } = req.body;
         const result = await authService.signin(email, password);
-        if (result.success === false) {
-            return res.status(400).send({ success: false, error: result.message });
+        if (result.error) {
+            return res.status(400).send({ success: false, error: result.error });
         }
 
+        res.cookie('token', result.token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV,
+            sameSite: 'strict',
+            maxAge: 60 * 60 * 1000
+        });
         res.status(200).send({ success: true, message: result.message, redirectTo: '/wallet' });
     }
 
     async signup(req, res) {
-        const { email, password } = req.body;
+        const { username, email, password } = req.body;
 
-        const result = await authService.signup(email, password);
-        if (result.success === false) {
-            return res.status(400).send({ success: false, error: result.message });
+        const result = await authService.signup(username, email, password);
+        if (result.error) {
+            return res.status(400).send({ success: false, error: result.error });
         }
 
         res.status(200).send({ success: true, message: result.message, redirectTo: '/confirm-email' });

@@ -18,8 +18,8 @@ class WalletController {
     async withdraw(req, res) {
         const { amount } = req.body;
         const result = await walletService.withdraw(amount);
-        if (result.success === false) {
-            res.status(401).send({ success: false, error: result.message });
+        if (result.error) {
+            res.status(401).send({ success: false, error: result.error });
         };
 
         res.status(200).send({ success: true, message: result.message });
@@ -28,8 +28,8 @@ class WalletController {
     async transfer(req, res) {
         const { amount, transferTo } = req.body;
         const result = await walletService.transfer(amount, transferTo);
-        if (result.success === false) {
-            res.status(401).send({ success: false, error: result.message });
+        if (result.error) {
+            res.status(401).send({ success: false, error: result.error });
         };
 
         res.status(200).send({ success: true, message: result.message });

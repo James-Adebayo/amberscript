@@ -1,16 +1,19 @@
 const mysql = require('mysql2/promise');
 
-class Database{
-    constructor(){
+class Database {
+    constructor() {
         this.pool = mysql.createPool({
-            host: process.env.HOST,
-            user: process.env.USER,
-            password: process.env.PASSWORD,
-            database: process.env.DATABASE_NAME
+            host: process.env.DB_HOST,
+            user: process.env.DB_USERNAME,
+            password: process.env.DB_PASSWORD,
+            database: process.env.DATABASE_NAME,
+            waitForConnections: true,
+            connectionLimit: 10,
+            queueLimit: 0
         });
     }
 
-    query(sql, params){
+    query(sql, params) {
         return this.pool.execute(sql, params);
     }
 }
