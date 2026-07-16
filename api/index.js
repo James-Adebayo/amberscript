@@ -1,6 +1,18 @@
-console.log("INDEX: File loaded");
+console.log("1: Before require");
 
-module.exports = (req, res) => {
-    console.log("INDEX: Function invoked");
-    res.status(200).send("Index.js is working");
-};
+try {
+    const app = require("../app");
+    console.log("2: After require");
+
+    module.exports = app;
+} catch (err) {
+    console.error("Require failed:");
+    console.error(err);
+
+    module.exports = (req, res) => {
+        res.status(500).json({
+            message: err.message,
+            stack: err.stack
+        });
+    };
+}
