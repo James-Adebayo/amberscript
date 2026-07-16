@@ -7,15 +7,15 @@ class PageController {
         res.sendFile(path.join(__dirname, "../frontend/tasks/index.html"));
     }
 
-    auth (req, res) {
+    auth(req, res) {
         res.sendFile(path.join(__dirname, "../frontend/auth/index.html"));
     };
 
-    wallet (req, res) {
+    wallet(req, res) {
         res.sendFile(path.join(__dirname, "../frontend/wallet/index.html"));
     };
 
-    confirmEmail (req, res) {
+    confirmEmail(req, res) {
         res.sendFile(path.join(__dirname, "../frontend/confirm-email/index.html"))
     }
 }
