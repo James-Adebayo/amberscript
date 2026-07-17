@@ -9,8 +9,8 @@ const webRoutes = require("./routes/web");
 const app = express();
 
 // app.use(removeTrailingSlash);
-app.use(express.static(path.join(__dirname, "frontend")));
+// app.use(express.static(path.join(__dirname, "frontend")));
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use("/", webRoutes);
 module.exports = app;

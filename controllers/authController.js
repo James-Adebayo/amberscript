@@ -10,12 +10,12 @@ class AuthController {
             return res.status(400).send({ success: false, error: result.error });
         }
 
-        res.cookie('token', result.token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV,
-            sameSite: 'strict',
-            maxAge: 60 * 60 * 1000
-        });
+        // res.cookie('token', result.token, {
+        //     httpOnly: true,
+        //     secure: process.env.NODE_ENV === 'production',
+        //     sameSite: 'strict',
+        //     maxAge: 60 * 60 * 1000
+        // });
         res.status(200).send({ success: true, message: result.message, redirectTo: '/wallet' });
     }
 
