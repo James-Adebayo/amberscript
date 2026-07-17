@@ -1,11 +1,18 @@
+console.log("1: Before require");
 
-const app = require("../app");
+try {
+    const app = require("../app");
+    console.log("2: After require");
 
-module.exports = app;
+    module.exports = app;
+} catch (err) {
+    console.error("Require failed:");
+    console.error(err);
 
-// const PORT = process.env.PORT || 3000;
-
-// app.listen(PORT, () => {
-//     console.log(`Server running on http://localhost:${PORT}`);
-// });
-
+    module.exports = (req, res) => {
+        res.status(500).json({
+            message: err.message,
+            stack: err.stack
+        });
+    };
+}
