@@ -14,5 +14,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(process.cwd(), "frontend")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/", webRoutes);
+// app.use("/", webRoutes);
+app.get("/", (req, res) => {
+    res.send("Server works");
+});
 module.exports = app;
