@@ -1,6 +1,7 @@
-// module.exports = require("./router");
 
 const app = require("../app");
+
+module.exports = require('../app');
 
 const PORT = process.env.PORT || 3000;
 
