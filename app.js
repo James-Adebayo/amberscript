@@ -1,4 +1,6 @@
-require("dotenv").config();
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config();
+}
 
 const express = require("express");
 const path = require("path");
@@ -14,8 +16,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(process.cwd(), "frontend")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use("/", webRoutes);
-app.get("/", (req, res) => {
-    res.send("Server works");
-});
+app.use("/", webRoutes);
+
 module.exports = app;
