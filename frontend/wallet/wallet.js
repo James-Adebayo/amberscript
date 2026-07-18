@@ -1,13 +1,13 @@
-// import { AuthGuard } from "../auth/authenticator";
+import { AuthGuard } from "../auth/authenticator";
 
-// window.addEventListener("DOMContentLoaded", () => {
-//     const auth = new AuthGuard('http://localhost:3000/authenticate', '/auth');
-//     const allowed = auth.verify();
+window.addEventListener("DOMContentLoaded", () => {
+    const auth = new AuthGuard('http://localhost:3000/authenticate', '/auth');
+    const allowed = auth.verify();
 
-//     if (allowed) {
-//         console.log("User is authenticated");
-//     }
-// })
+    if (allowed) {
+        console.log("User is authenticated");
+    }
+})
 
 
 // --- Shared Database Source (Static Mock) ---
