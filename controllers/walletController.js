@@ -4,12 +4,19 @@ class WalletController {
     constructor() {
         this.walletService = walletService;
     }
+    async getBalance(req, res) {
+        const result = await walletService.getBalance();
+        if (result.error) {
+            res.status(400).send({success: false, error: result.error});
+        }
 
+        res.status(200).send({success: true, message: result.message});
+    }
     async deposit(req, res) {
         const { amount } = req.body;
         const result = await walletService.deposit(amount);
-        if (result.success === false) {
-            res.status(401).send({ success: false, error: result.message });
+        if (result.error) {
+            res.status(401).send({ success: false, error: result.error});
         };
 
         res.status(200).send({ success: true, message: result.message });
