@@ -1,7 +1,7 @@
 import { AuthGuard } from "../auth/authenticator";
 
 window.addEventListener("DOMContentLoaded", () => {
-    const auth = new AuthGuard('http://localhost:3000/authenticate', '/auth');
+    const auth = new AuthGuard('/authenticate', '/auth');
     const allowed = auth.verify();
 
     if (allowed) {
