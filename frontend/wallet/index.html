@@ -80,8 +80,8 @@
                 <div class="sidebar-profile">
                     <div class="profile-avatar">AA</div>
                     <div class="profile-details">
-                        <h4 class="profile-name">James</h4>
-                        <p class="profile-email">James@amberscript.com/p>
+                        <h4 class="profile-name" id="username">James</h4>
+                        <p class="profile-email" id="user-email">James@amberscript.com</p>
                     </div>
                 </div>
             </div>
@@ -103,7 +103,7 @@
                         </button>
                         <div class="header-welcome">
                             <p class="date-today" id="current-date">July 11, 2026</p>
-                            <h2 class="welcome-text">Welcome back, <span class="accent-username">James</span></h2>
+                            <h2 class="welcome-text">Welcome back, <span class="accent-username" id="username">James</span></h2>
                         </div>
                     </div>
                     <div class="header-notification">
@@ -211,7 +211,7 @@
                                             <div class="card-footer">
                                                 <div class="card-holder-info">
                                                     <span class="lbl-small">Card Holder</span>
-                                                    <span class="val-card">James</span>
+                                                    <span class="val-card" id="username">James</span>
                                                 </div>
                                                 <div class="card-expiry-info">
                                                     <span class="lbl-small">Expiry</span>
@@ -722,7 +722,7 @@
                                 <span class="inbox-item-date">July 11</span>
                             </div>
                             <h5 class="inbox-item-subject">French Transcription Payout Confirmed</h5>
-                            <p class="inbox-item-excerpt">Hi James, your transcription of French Audio Project #49281
+                            <p class="inbox-item-excerpt">Hi <span id="username">James</span>, your transcription of French Audio Project #49281
                                 has been reviewed...</p>
                             <span class="inbox-unread-dot" id="inbox-notif-dot-1"></span>
                         </div>
@@ -732,7 +732,7 @@
                                 <span class="inbox-item-date">Jun 25</span>
                             </div>
                             <h5 class="inbox-item-subject">Welcome to AmberScript Wallet!</h5>
-                            <p class="inbox-item-excerpt">Welcome James! Your Amber Virtual Card has been successfully
+                            <p class="inbox-item-excerpt">Welcome <span id="username">James</span>! Your Amber Virtual Card has been successfully
                                 created. You can now...</p>
                         </div>
                     </div>
@@ -753,7 +753,7 @@
                             <span class="msg-date-header" id="msg-date">July 11, 2026</span>
                         </div>
                         <div class="inbox-detail-body" id="msg-body">
-                            <p>Hi James,</p>
+                            <p>Hi <span id="username">James</span>,</p>
                             <br>
                             <p>Your transcription submission for <strong>French Audio Project #49281</strong> has been
                                 successfully reviewed and approved by our native language experts.</p>
@@ -810,11 +810,11 @@
                                 <div class="form-row-2">
                                     <div class="form-group">
                                         <label>Full Name</label>
-                                        <input type="text" class="form-input" value="James">
+                                        <input type="text" class="form-input" value="James" id="username">
                                     </div>
                                     <div class="form-group">
                                         <label>Email Address</label>
-                                        <input type="email" class="form-input" value="James@amberscript.com" disabled>
+                                        <input type="email" class="form-input" value="James@amberscript.com" id="user-email" disabled>
                                     </div>
                                 </div>
                                 <div class="form-row-2">
@@ -939,12 +939,12 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Deposit Amount (₦)</label>
-                    <input type="number" class="form-input" placeholder="Enter amount (e.g. 5,000)" min="100" required>
+                    <label for="deposit-amount">Deposit Amount (₦)</label>
+                    <input type="number" name="deposit-amount" id="deposit-amount" class="form-input" placeholder="Enter amount (e.g. 5,000)" min="100" required>
                 </div>
                 <div class="modal-actions">
                     <button type="button" class="btn btn-cancel" data-close="modal-deposit">Cancel</button>
-                    <button type="submit" class="btn btn-confirm">Complete Deposit</button>
+                    <button type="submit" class="btn btn-confirm" id="deposit">Complete Deposit</button>
                 </div>
             </form>
         </div>
@@ -967,15 +967,15 @@
                 <div class="form-group">
                     <label>Select Bank</label>
                     <select class="form-input" required>
-                        <option>Wema Bank (0291244829 - James)</option>
-                        <option>Access Bank (1029481191 - James)</option>
-                        <option>GTBank (0182491129 - James)</option>
+                        <option>Wema Bank (0291244829 - <span id="username"></span>)</option>
+                        <option>Access Bank (1029481191 - <span id="username"></span>)</option>
+                        <option>GTBank (0182491129 - <span id="username"></span>)</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Withdrawal Amount (₦)</label>
-                    <input type="number" class="form-input" id="withdraw-amount-input" placeholder="Available: ₦300,424"
-                        max="300424" min="500" required>
+                    <input type="number" class="form-input" name="withdraw-amount-input" id="withdraw-amount-input" placeholder="Available: ₦300,424"
+                        max="" min="500" required>
                     <span class="input-note">Fee: ₦0.00 (Free Student Tier account)</span>
                 </div>
                 <div class="modal-actions">
@@ -1108,6 +1108,7 @@
     <!-- --- INTERACTIVE SCRIPTS --- -->
     <script type="module" src="wallet.js"></script>
     <script src="app.js"></script>
+    <script src="user.js"></script>
 </body>
 
 </html>
