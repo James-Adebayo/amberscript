@@ -12,6 +12,12 @@ const webRoutes = require("./routes/web");
 const app = express();
 // app.use(removeTrailingSlash);
 app.use(cookieParser());
+
+const authCheck = require("./middleware/authCheck");
+// Secure the wallet and tasks pages before static files are served
+app.use("/wallet", authCheck.authenticatePage);
+app.use("/tasks", authCheck.authenticatePage);
+
 app.use(express.static(path.join(process.cwd(), "frontend")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

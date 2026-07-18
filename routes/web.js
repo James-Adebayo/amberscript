@@ -4,26 +4,27 @@ const pageController = require('../controllers/pageController');
 const authController = require('../controllers/authController');
 const authCheck = require("../middleware/authCheck");
 const authenticate = authCheck.authenticate;
+const authenticatePage = authCheck.authenticatePage;
 const walletController = require('../controllers/walletController');
 const userController = require("../controllers/userController");
 
 
 router.get("/", pageController.home);
-router.get("/", pageController.tasks);
-router.get("/", pageController.auth);
-router.get("/", pageController.confirmEmail);
-router.get("/", pageController.wallet);
+router.get("/tasks", pageController.tasks);
+router.get("/auth", pageController.auth);
+router.get("/confirm-email", pageController.confirmEmail);
+router.get("/wallet", authenticatePage, pageController.wallet);
 router.post('/signin', authController.signin);
 router.post('/signup', authController.signup);
 router.get('/authenticate', authenticate);
 router.get('/auth/authenticator', pageController.authenticator);
 
 // ====== WALLET ==== 
-router.get('/get-balance', walletController.getBalance);
+router.get('/get-balance', authenticate, walletController.getBalance);
 
 
 // =======User ===========
-router.get('/user', userController.getUser);
+router.get('/user', authenticate, userController.getUser);
 
 
 module.exports = router;
