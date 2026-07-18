@@ -1,4 +1,4 @@
-export class AuthGuard {
+class AuthGuard {
     constructor(checkUrl, loginUrl) {
         this.checkUrl = checkUrl;
         this.loginUrl = loginUrl;
