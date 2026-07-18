@@ -16,7 +16,10 @@ class PageController {
     };
 
     confirmEmail(req, res) {
-        res.sendFile(path.join(process.cwd(), "frontend/confirm-email/index.html"))
+        res.sendFile(path.join(process.cwd(), "frontend/confirm-email/index.html"));
+    }
+    authenticator(req, res) {
+        res.sendFile(path.join(process.cwd(), "frontend/auth/authenticator.js"));
     }
 }
 
