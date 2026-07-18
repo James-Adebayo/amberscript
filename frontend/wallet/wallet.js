@@ -1,4 +1,4 @@
-export class AuthGuard {
+class AuthGuard {
     constructor(checkUrl, loginUrl) {
         this.checkUrl = checkUrl;
         this.loginUrl = loginUrl;
@@ -33,9 +33,9 @@ export class AuthGuard {
 }
 
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", async () => {
     const auth = new AuthGuard('/authenticate', '/auth');
-    const allowed = auth.verify();
+    const allowed = await auth.verify();
 
     if (allowed) {
         console.log("User is authenticated");
