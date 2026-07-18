@@ -1,46 +1,46 @@
-class AuthGuard {
-    constructor(checkUrl, loginUrl) {
-        this.checkUrl = checkUrl;
-        this.loginUrl = loginUrl;
-    }
+// class AuthGuard {
+//     constructor(checkUrl, loginUrl) {
+//         this.checkUrl = checkUrl;
+//         this.loginUrl = loginUrl;
+//     }
 
-    async verify() {
-        try {
-            const response = await fetch(this.checkUrl, {
-                method: 'GET',
-                credentials: 'include'
-            });
+//     async verify() {
+//         try {
+//             const response = await fetch(this.checkUrl, {
+//                 method: 'GET',
+//                 credentials: 'include'
+//             });
 
-            const data = await response.json();
+//             const data = await response.json();
 
-            if (data.success || data.approved) {
-                return true;
-            } else {
-                this.redirectToLogin();
-                console.error(data.error);
-                return false;
-            }
-        } catch (err) {
-            console.error("Auth check failed");
-            this.redirectToLogin();
-            return false;
-        }
-    }
+//             if (data.success || data.approved) {
+//                 return true;
+//             } else {
+//                 this.redirectToLogin();
+//                 console.error(data.error);
+//                 return false;
+//             }
+//         } catch (err) {
+//             console.error("Auth check failed");
+//             this.redirectToLogin();
+//             return false;
+//         }
+//     }
 
-    redirectToLogin() {
-        window.location.href = this.loginUrl;
-    }
-}
+//     redirectToLogin() {
+//         window.location.href = this.loginUrl;
+//     }
+// }
 
 
-window.addEventListener("DOMContentLoaded", async () => {
-    const auth = new AuthGuard('/authenticate', '/auth');
-    const allowed = await auth.verify();
+// window.addEventListener("DOMContentLoaded", async () => {
+//     const auth = new AuthGuard('/authenticate', '/auth');
+//     const allowed = await auth.verify();
 
-    if (allowed) {
-        console.log("User is authenticated");
-    }
-})
+//     if (allowed) {
+//         console.log("User is authenticated");
+//     }
+// })
 
 
 // --- Shared Database Source (Static Mock) ---
