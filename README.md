@@ -34,6 +34,7 @@ Tech Stack
 Backend
 
 - Node.js
+- PHP
 - Express.js
 - MySQL
 - JWT
