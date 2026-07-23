@@ -7,13 +7,7 @@ def home():
         "status" : "running"
     }
 
+from controller.translateController import TranslateController
 @app.post("/translate")
-# looking for the a free ai responsible for the translation here,
 def translate(data: dict):
-    print ("Received: ", data["text"])
-
-    return {
-        "message" : {
-            "translated: " + data["text"]
-        }
-    }
+    return TranslateController.translate(data)

@@ -35,10 +35,7 @@ Backend
 
 - Node.js
 - PHP
-<<<<<<< HEAD
 - PYTHON
-=======
->>>>>>> 5091dbdb96337ba6fc3a302c950194bc422ad8bf
 - Express.js
 - MySQL
 - JWT
