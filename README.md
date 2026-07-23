@@ -34,6 +34,8 @@ Tech Stack
 Backend
 
 - Node.js
+- PHP
+- PYTHON
 - Express.js
 - MySQL
 - JWT
@@ -59,6 +61,8 @@ project/
 ├── middleware/
 ├── config/
 ├── uploads/
+├── php/
+├── python/
 ├── frontend/
 ├── database/
 └── app.js
@@ -123,6 +127,8 @@ cp .env.example .env
 
 npm start
 
+cd python
+pip install > requirements.txt
 ---
 
 Environment Variables
