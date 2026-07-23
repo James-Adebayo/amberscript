@@ -21,6 +21,9 @@ class PageController {
     authenticator(req, res) {
         res.sendFile(path.join(process.cwd(), "frontend/auth/authenticator.js"));
     }
+    translation(req, res) {
+        res.sendFile(path.join(process.cwd(), "frontend/translation/index.html"));
+    }
 }
 
 module.exports = new PageController();

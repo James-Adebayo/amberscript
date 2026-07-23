@@ -18,7 +18,9 @@ router.post('/signin', authController.signin);
 router.post('/signup', authController.signup);
 router.get('/authenticate', authenticate);
 router.get('/auth/authenticator', pageController.authenticator);
-router.get('/translate', translateController.translate);
+router.get('/translation', pageController.translation);
+router.get('/translate', pageController.translation);
+router.post('/translate', (req, res) => translateController.translate(req, res));
 
 // ====== WALLET ==== 
 router.get('/get-balance', authenticate, walletController.getBalance);

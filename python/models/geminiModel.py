@@ -10,8 +10,16 @@ client = genai.Client(api_key = apikey)
 class GeminiModel:
     @staticmethod
     def translate(text, language):
-        response = client.models.generate_content(
-            model = "gemini-3.6-flash",
-            contents = f"Translate '{text}' to {language}. Return only the translation."
-        )
-        return response.text
+        prompt = f"Translate the following text to {language}. Return ONLY the translated text without quotes or explanation:\n\n{text}"
+        try:
+            response = client.models.generate_content(
+                model = "gemini-3.6-flash",
+                contents = prompt
+            )
+            return response.text
+        except Exception as err:
+            response = client.models.generate_content(
+                model = "gemini-2.0-flash",
+                contents = prompt
+            )
+            return response.text

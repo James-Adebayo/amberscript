@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/images/logo/logo-t.png">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+
+    <!-- SEO Optimization -->
+    <title>Free AI Text Translation — AmberScript</title>
+    <meta name="description"
+        content="Free instant text translation powered by AmberScript AI & Gemini. Translate text across multiple languages with high precision and speed.">
+
+    <!-- Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <style>
+        .translation-page {
+            padding-top: 2rem;
+            padding-bottom: 5rem;
+            min-height: calc(100vh - 120px);
+            background: linear-gradient(180deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 100%);
+        }
+
+        .translation-header {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .back-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            transition: var(--transition-fast);
+        }
+
+        .back-nav:hover {
+            color: var(--color-primary);
+            transform: translateX(-3px);
+        }
+
+        .translation-card {
+            background: var(--color-bg-primary);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .card-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+            background: var(--color-bg-secondary);
+            border-bottom: 1px solid var(--color-border-light);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .toolbar-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .toolbar-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .lang-select {
+            padding: 0.6rem 1rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            background: var(--color-bg-primary);
+            border: 1.5px solid var(--color-border);
+            border-radius: 8px;
+            outline: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .lang-select:focus, .lang-select:hover {
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 3px rgba(50, 150, 120, 0.15);
+        }
+
+        .quick-pills {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 2px;
+        }
+
+        .pill-btn {
+            padding: 0.35rem 0.75rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            border-radius: 20px;
+            background: var(--color-primary-light);
+            color: var(--color-primary);
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            white-space: nowrap;
+        }
+
+        .pill-btn:hover, .pill-btn.active {
+            background: var(--color-primary);
+            color: #ffffff;
+        }
+
+        .translation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 380px;
+        }
+
+        @media (max-width: 768px) {
+            .translation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .panel-input {
+            border-right: 1px solid var(--color-border-light);
+        }
+
+        @media (max-width: 768px) {
+            .panel-input {
+                border-right: none;
+                border-bottom: 1px solid var(--color-border-light);
+            }
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+
+        .panel-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .panel-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .icon-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.35rem 0.65rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border-light);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .icon-btn:hover {
+            color: var(--color-primary);
+            background: var(--color-primary-light);
+            border-color: var(--color-primary-light);
+        }
+
+        .text-area-input {
+            width: 100%;
+            height: 240px;
+            border: none;
+            outline: none;
+            resize: none;
+            font-family: var(--font-sans);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: var(--color-text-primary);
+            background: transparent;
+        }
+
+        .text-area-input::placeholder {
+            color: #a0aec0;
+        }
+
+        .output-box {
+            width: 100%;
+            height: 240px;
+            overflow-y: auto;
+            font-family: var(--font-sans);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: var(--color-text-primary);
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .output-placeholder {
+            color: #a0aec0;
+            font-style: italic;
+        }
+
+        .panel-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--color-border-light);
+        }
+
+        .char-count {
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+        }
+
+        .action-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            background: var(--color-bg-secondary);
+            border-top: 1px solid var(--color-border-light);
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #ffffff;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .alert-banner {
+            display: none;
+            margin: 1.5rem auto 0 auto;
+            max-width: 1100px;
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .alert-error {
+            background-color: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        .alert-success {
+            background-color: #ecfdf5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .badge-free {
+            display: inline-block;
+            background-color: var(--color-accent-light);
+            color: var(--color-accent);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- --- NAVIGATION HEADER --- -->
+    <header id="main-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="/">
+                    <img src="/assets/images/logo/logo-t.png" alt="AmberScript Logo">
+                </a>
+            </div>
+
+            <nav>
+                <a href="/" class="nav-link">Home</a>
+                <a href="/tasks" class="nav-link">Tasks</a>
+                <a href="/#services" class="nav-link">Media</a>
+                <a href="/#calculator" class="nav-link">Investments</a>
+            </nav>
+
+            <div class="header-cta">
+                <a href="/auth" class="btn btn-outline">Login</a>
+                <a href="/wallet" class="btn btn-primary">Wallet</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- --- TRANSLATION MAIN SECTION --- -->
+    <main class="translation-page">
+        <div class="container">
+            <div class="translation-header">
+                <a href="/" class="back-nav">&larr; Back to Home</a>
+                <br>
+                <span class="hero-tag"><span class="badge-free">Free AI Service</span> AmberScript Translator</span>
+                <h1 class="hero-title" style="margin-top: 0.75rem; margin-bottom: 0.75rem;">
+                    Instant Neural <span class="text-gradient">Text Translation</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Translate your transcription notes, documents, or custom text instantly into over 20 languages using Gemini AI.
+                </p>
+            </div>
+
+            <!-- Translation Card UI -->
+            <div class="translation-card">
+                <!-- Toolbar -->
+                <div class="card-toolbar">
+                    <div class="toolbar-group">
+                        <span class="toolbar-label">Source:</span>
+                        <span class="pill-btn active">Auto-Detect</span>
+                    </div>
+
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2">
+                            <path d="M5 12h14M13 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+
+                    <div class="toolbar-group">
+                        <span class="toolbar-label">Translate To:</span>
+                        <select id="targetLanguage" class="lang-select">
+                            <option value="French">🇫🇷 French (Français)</option>
+                            <option value="Spanish">🇪🇸 Spanish (Español)</option>
+                            <option value="German">🇩🇪 German (Deutsch)</option>
+                            <option value="Italian">🇮🇹 Italian (Italiano)</option>
+                            <option value="Portuguese">🇵🇹 Portuguese (Português)</option>
+                            <option value="Dutch">🇳🇱 Dutch (Nederlands)</option>
+                            <option value="Chinese">🇨🇳 Chinese (Mandarin)</option>
+                            <option value="Japanese">🇯🇵 Japanese (日本語)</option>
+                            <option value="Korean">🇰🇷 Korean (한국어)</option>
+                            <option value="Russian">🇷🇺 Russian (Русский)</option>
+                            <option value="Arabic">🇸🇦 Arabic (العربية)</option>
+                            <option value="Hindi">🇮🇳 Hindi (हिन्दी)</option>
+                            <option value="Turkish">🇹🇷 Turkish (Türkçe)</option>
+                            <option value="Swahili">🇰🇪 Swahili (Kiswahili)</option>
+                            <option value="Yoruba">🇳🇬 Yoruba</option>
+                            <option value="Igbo">🇳🇬 Igbo</option>
+                            <option value="Hausa">🇳🇬 Hausa</option>
+                        </select>
+                    </div>
+
+                    <div class="quick-pills">
+                        <button class="pill-btn" onclick="selectQuickLang('French')">French</button>
+                        <button class="pill-btn" onclick="selectQuickLang('Spanish')">Spanish</button>
+                        <button class="pill-btn" onclick="selectQuickLang('German')">German</button>
+                        <button class="pill-btn" onclick="selectQuickLang('Chinese')">Chinese</button>
+                        <button class="pill-btn" onclick="selectQuickLang('Japanese')">Japanese</button>
+                    </div>
+                </div>
+
+                <!-- Dual Column Layout -->
+                <div class="translation-grid">
+                    <!-- Left Input Panel -->
+                    <div class="panel panel-input">
+                        <div class="panel-header">
+                            <span class="panel-title">Source Text</span>
+                            <div class="panel-actions">
+                                <button class="icon-btn" id="sampleBtn" title="Load sample text">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                    Sample
+                                </button>
+                                <button class="icon-btn" id="clearBtn" title="Clear text">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                                    Clear
+                                </button>
+                            </div>
+                        </div>
+
+                        <textarea id="inputText" class="text-area-input" placeholder="Type or paste your text here to translate..."></textarea>
+
+                        <div class="panel-footer">
+                            <span class="char-count" id="inputCharCount">0 characters</span>
+                            <span class="char-count" style="font-size: 0.75rem; color: #a0aec0;">Press Ctrl+Enter to translate</span>
+                        </div>
+                    </div>
+
+                    <!-- Right Output Panel -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <span class="panel-title">Translation Output</span>
+                            <div class="panel-actions">
+                                <button class="icon-btn" id="listenBtn" title="Listen to translation" style="display: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                                    Listen
+                                </button>
+                                <button class="icon-btn" id="copyBtn" title="Copy translation">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="outputText" class="output-box">
+                            <span class="output-placeholder">Translated text will appear here...</span>
+                        </div>
+
+                        <div class="panel-footer">
+                            <span class="char-count" id="outputCharCount">0 characters</span>
+                            <span id="statusTag" style="font-size: 0.75rem; font-weight: 600; color: var(--color-accent);">Ready</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Footer Bar -->
+                <div class="action-bar">
+                    <div style="font-size: 0.85rem; color: var(--color-text-secondary);">
+                        ⚡ Neural Translation model
+                    </div>
+                    <button id="translateBtn" class="btn btn-primary" style="padding: 0.75rem 2rem; font-size: 1rem;">
+                        <span id="btnText">Translate Now</span>
+                        <svg id="btnIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Alert Notification -->
+            <div id="alertBanner" class="alert-banner"></div>
+        </div>
+    </main>
+
+    <!-- JS Logic -->
+    <script>
+        const inputText = document.getElementById('inputText');
+        const outputText = document.getElementById('outputText');
+        const targetLanguage = document.getElementById('targetLanguage');
+        const translateBtn = document.getElementById('translateBtn');
+        const btnText = document.getElementById('btnText');
+        const btnIcon = document.getElementById('btnIcon');
+        const clearBtn = document.getElementById('clearBtn');
+        const sampleBtn = document.getElementById('sampleBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const listenBtn = document.getElementById('listenBtn');
+        const inputCharCount = document.getElementById('inputCharCount');
+        const outputCharCount = document.getElementById('outputCharCount');
+        const statusTag = document.getElementById('statusTag');
+        const alertBanner = document.getElementById('alertBanner');
+
+        // Update character count
+        inputText.addEventListener('input', () => {
+            const count = inputText.value.length;
+            inputCharCount.textContent = `${count} characters`;
+        });
+
+        // Load sample text
+        sampleBtn.addEventListener('click', () => {
+            inputText.value = "AmberScript provides secure, automated speech-to-text and subtitle services tailored for university students and global research teams.";
+            inputCharCount.textContent = `${inputText.value.length} characters`;
+            showAlert('Sample text loaded. Select language and click Translate!', 'success');
+        });
+
+        // Clear input
+        clearBtn.addEventListener('click', () => {
+            inputText.value = '';
+            outputText.innerHTML = '<span class="output-placeholder">Translated text will appear here...</span>';
+            inputCharCount.textContent = '0 characters';
+            outputCharCount.textContent = '0 characters';
+            listenBtn.style.display = 'none';
+            statusTag.textContent = 'Ready';
+            hideAlert();
+        });
+
+        // Quick Language Selection
+        function selectQuickLang(lang) {
+            targetLanguage.value = lang;
+            document.querySelectorAll('.quick-pills .pill-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent === lang);
+            });
+        }
+
+        // Copy translation to clipboard
+        copyBtn.addEventListener('click', async () => {
+            const textToCopy = outputText.textContent;
+            if (!textToCopy || outputText.querySelector('.output-placeholder')) {
+                showAlert('No translated text to copy yet.', 'error');
+                return;
+            }
+
+            try {
+                await navigator.clipboard.writeText(textToCopy);
+                showAlert('Translation copied to clipboard!', 'success');
+            } catch (err) {
+                showAlert('Failed to copy text.', 'error');
+            }
+        });
+
+        // Text to Speech
+        listenBtn.addEventListener('click', () => {
+            const textToSpeak = outputText.textContent;
+            if (!textToSpeak || outputText.querySelector('.output-placeholder')) return;
+
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // stop any ongoing speech
+                const utterance = new SpeechSynthesisUtterance(textToSpeak);
+                window.speechSynthesis.speak(utterance);
+            } else {
+                showAlert('Text-to-speech is not supported in your browser.', 'error');
+            }
+        });
+
+        // Keyboard Shortcut: Ctrl + Enter or Cmd + Enter
+        inputText.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                e.preventDefault();
+                performTranslation();
+            }
+        });
+
+        // Perform Translation API call
+        async function performTranslation() {
+            const text = inputText.value.trim();
+            const lang = targetLanguage.value;
+
+            if (!text) {
+                showAlert('Please enter or paste text to translate.', 'error');
+                inputText.focus();
+                return;
+            }
+
+            hideAlert();
+            setLoading(true);
+
+            try {
+                const response = await fetch('/translate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        text: text,
+                        language: lang
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    const translation = typeof data.translation === 'string' ? data.translation : JSON.stringify(data.translation);
+                    outputText.textContent = translation;
+                    outputCharCount.textContent = `${translation.length} characters`;
+                    listenBtn.style.display = 'inline-flex';
+                    statusTag.textContent = 'Translated';
+                    showAlert(`Successfully translated to ${lang}!`, 'success');
+                } else {
+                    const errorMsg = data.error || 'Failed to generate translation.';
+                    showAlert(`Translation Error: ${errorMsg}`, 'error');
+                    statusTag.textContent = 'Error';
+                }
+            } catch (error) {
+                console.error('Translation network request failed:', error);
+                showAlert('Network error: Could not reach translation server. Please verify python backend service is running.', 'error');
+                statusTag.textContent = 'Network Error';
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        translateBtn.addEventListener('click', performTranslation);
+
+        function setLoading(isLoading) {
+            if (isLoading) {
+                translateBtn.disabled = true;
+                btnText.textContent = 'Translating...';
+                btnIcon.outerHTML = '<div id="btnIcon" class="spinner"></div>';
+                statusTag.textContent = 'Processing...';
+            } else {
+                translateBtn.disabled = false;
+                btnText.textContent = 'Translate Now';
+                const spinner = document.getElementById('btnIcon');
+                if (spinner) {
+                    spinner.outerHTML = `<svg id="btnIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
+                }
+            }
+        }
+
+        function showAlert(message, type = 'error') {
+            alertBanner.textContent = message;
+            alertBanner.className = `alert-banner ${type === 'error' ? 'alert-error' : 'alert-success'}`;
+            alertBanner.style.display = 'block';
+            setTimeout(() => {
+                if (type === 'success') hideAlert();
+            }, 5000);
+        }
+
+        function hideAlert() {
+            alertBanner.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,18 +1,28 @@
-class TranslateService{
-    async translate(data){
-        const response = await fetch("http://127.0.0.1:8000/translate", {
-            method: 'POST',
-            headers: {
-                "Content-Type" : "application/json"
-            },
-            body: JSON.stringify({
-                text: data,
-                language: "french"
-            })
-        });
+class TranslateService {
+    async translate(text, language) {
+        try {
+            const response = await fetch("https://amberscript.onrender.com/translate", {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    text: text,
+                    language: language || "French"
+                })
+            });
 
-        const result = await response.json();
-        return result;
+            if (!response.ok) {
+                const errBody = await response.text();
+                throw new Error(`Python translation service returned error ${response.status}: ${errBody}`);
+            }
+
+            const result = await response.json();
+            return result;
+        } catch (error) {
+            console.error("Error in TranslateService:", error.message);
+            throw error;
+        }
     }
 }
 
