@@ -7,7 +7,7 @@ const authenticate = authCheck.authenticate;
 const authenticatePage = authCheck.authenticatePage;
 const walletController = require('../controllers/walletController');
 const userController = require("../controllers/userController");
-
+const translateController = require("../controllers/translateController");
 
 router.get("/", pageController.home);
 router.get("/tasks", pageController.tasks);
@@ -18,6 +18,7 @@ router.post('/signin', authController.signin);
 router.post('/signup', authController.signup);
 router.get('/authenticate', authenticate);
 router.get('/auth/authenticator', pageController.authenticator);
+router.get('/translate', translateController.translate);
 
 // ====== WALLET ==== 
 router.get('/get-balance', authenticate, walletController.getBalance);
