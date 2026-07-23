@@ -1,6 +1,6 @@
 class TranslateService{
     async translate(data){
-        const response = await fetch("http://127.0.0.1:8000/translate", {
+        const response = await fetch("https://amberscript.onrender.com/translate", {
             method: 'POST',
             headers: {
                 "Content-Type" : "application/json"
