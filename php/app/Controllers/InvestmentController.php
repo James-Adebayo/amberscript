@@ -1,24 +1,27 @@
 <?php
-namespace App\Controller;
-use App\Services\InvestmentService;
 
+namespace App\Controllers;
+
+use App\Services\InvestmentService;
 
 class InvestmentController
 {
-    private InvestmentService $investmentServices;
+    private InvestmentService $investmentService;
 
-    public function __construct()
+    public function __construct(InvestmentService $investmentService)
     {
-        $this->investmentService = new InvestmentService();
+        $this->investmentService = $investmentService;
     }
 
-    public function calculate()
+    public function calculate(): void
     {
         $balance = 10000;
 
-        $interest = $this->investmentServices->calculateInterest($balance);
+        $interest = $this->investmentService->calculateInterest($balance);
 
+        header('Content-Type: application/json');
         echo json_encode([
+            "balance" => $balance,
             "investment" => $interest
         ]);
     }

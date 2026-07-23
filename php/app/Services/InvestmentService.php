@@ -1,11 +1,25 @@
 <?php
-namespace Services;
+
+namespace App\Services;
+
+use App\Repositories\InvestmentRepository;
 
 class InvestmentService
 {
-    public function calculateInterest(float $balance): float
+    private InvestmentRepository $investmentRepository;
+
+    public function __construct(InvestmentRepository $investmentRepository)
     {
-        $rate = 0.01;
+        $this->investmentRepository = $investmentRepository;
+    }
+
+    public function calculateInterest(?float $balance = null): float
+    {
+        if ($balance === null) {
+            $balance = $this->investmentRepository->getBalance();
+        }
+
+        $rate = $this->investmentRepository->getInterestRate();
 
         return $balance * $rate;
     }
